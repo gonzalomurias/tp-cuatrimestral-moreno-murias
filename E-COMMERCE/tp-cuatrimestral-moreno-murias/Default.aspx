@@ -2,19 +2,20 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-
+<div style="display:flex; flex-direction:row; flex-wrap:wrap">
     <% foreach (var producto in listaProductos) 
         { %>
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
+        <a href="Detalle.aspx?id=<%:producto.ID %>" style="color: black;">
+        <div class="card" style="width: 22rem; height: 30rem; border: solid 2px black; padding: 10px; margin:10px; ">
+          <img src="<%: producto.UrlImagen %>" width="200px" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title"><%: producto.Nombre %></h5>
+            <h5 class="card-text"><%: producto.Precio %></h5>
           </div>
         </div>
+            </a>
         <%
         }
     %>
-   
+</div>
 </asp:Content>
