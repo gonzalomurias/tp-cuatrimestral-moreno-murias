@@ -11,6 +11,6 @@ namespace Dominio
         public int ID { get; set; }
         public int Numero { get; set; }
         public bool Estado { get; set; }
-
+        public int Stock { get; set; }
     }
 }

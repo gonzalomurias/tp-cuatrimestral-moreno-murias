@@ -16,7 +16,6 @@ namespace Dominio
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public string UrlImagen { get; set; }
-        public int Stock { get; set; }
         public bool Estado { get; set; }
     }
 }

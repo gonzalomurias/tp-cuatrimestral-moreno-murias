@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Select P.ID, C.ID as IDCat, C.Nombre as Categoria, M.ID as IDMar, M.Nombre as Marca, T.ID as IDTa, T.Numero as Talle, P.Nombre, P.Descripcion, P.Precio, P.URL_Imagen, P.Stock from Productos as P, Marcas as M, Categorias as C, Talles as T where P.IDMarca = M.ID and P.IDCategoria = C.ID and P.IDTalle = T.ID");
+                datos.setearConsulta("Select P.ID, C.ID as IDCat, C.Nombre as Categoria, M.ID as IDMar, M.Nombre as Marca, T.ID as IDTa, T.Numero as Talle, P.Nombre, P.Descripcion, P.Precio, P.URL_Imagen, T.Stock from Productos as P, Marcas as M, Categorias as C, Talles as T where P.IDMarca = M.ID and P.IDCategoria = C.ID and P.IDTalle = T.ID");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -38,6 +38,7 @@ namespace Negocio
                     aux.Talle = new Talle();
                     aux.Talle.ID = (int)datos.Lector["IDTa"];
                     aux.Talle.Numero = (int)datos.Lector["Talle"];
+                    aux.Talle.Stock = (int)datos.Lector["Stock"];
 
                     if (!(datos.Lector["Nombre"] is DBNull))
                         aux.Nombre = (string)datos.Lector["Nombre"];
@@ -51,8 +52,6 @@ namespace Negocio
                     if (!(datos.Lector["URL_Imagen"] is DBNull))
                         aux.UrlImagen = (string)datos.Lector["URL_Imagen"];
 
-                    if (!(datos.Lector["Stock"] is DBNull))
-                        aux.Stock = (int)datos.Lector["Stock"];
 
                     lista.Add(aux);
                 }

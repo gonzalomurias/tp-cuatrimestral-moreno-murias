@@ -19,7 +19,8 @@ go
 CREATE TABLE TALLES(
 	ID int primary key identity(1,1),
 	Numero int not null check (Numero >= 34 AND Numero <= 47),
-	Estado bit not null default(1)
+	Estado bit not null default(1),
+	Stock int default(1)
 )
 
 go
@@ -32,7 +33,6 @@ CREATE TABLE PRODUCTOS(
 	Descripcion varchar(150) not null,
 	Precio money not null check (Precio>0),
 	URL_Imagen varchar(300) not null,
-	Stock int not null,
 	Estado bit not null default(1)
 )
 
@@ -65,13 +65,16 @@ INSERT INTO TALLES (Numero) VALUES (47)
 INSERT INTO CATEGORIAS (Nombre) VALUES ('ZAPATILLAS')
 INSERT INTO CATEGORIAS (Nombre) VALUES ('OJOTAS')
 
-INSERT INTO PRODUCTOS (IDCategoria, IDMarca, IDTalle, Nombre, Descripcion, Precio, URL_Imagen, Stock) 
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, IDTalle, Nombre, Descripcion, Precio, URL_Imagen) 
 VALUES (1, 1, 4, 'NIKE AIR FORCE 1 07', 'Zapatillas Nike Air Force 1 07 Low White', 17499.00,
-'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw9ee36128/products/NI_315115-112/NI_315115-112-6.JPG', 200)
-INSERT INTO PRODUCTOS (IDCategoria, IDMarca, IDTalle, Nombre, Descripcion, Precio, URL_Imagen, Stock) 
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw9ee36128/products/NI_315115-112/NI_315115-112-6.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, IDTalle, Nombre, Descripcion, Precio, URL_Imagen) 
 VALUES (1, 1, 5, 'NIKE AIR MAX 270 REACT', 'Zapatillas Nike Air Max 270 React', 25199.00,
-'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwac06058d/products/NI_CT1264-101/NI_CT1264-101-6.JPG', 15)
-INSERT INTO PRODUCTOS (IDCategoria, IDMarca, IDTalle, Nombre, Descripcion, Precio, URL_Imagen, Stock) 
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwac06058d/products/NI_CT1264-101/NI_CT1264-101-6.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, IDTalle, Nombre, Descripcion, Precio, URL_Imagen) 
 VALUES (1, 2, 6, 'ADIDAS FORUM EXHIBIT LOW', 'Zapatillas Adidas Forum Exhibit Low', 12999.00,
-'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw2629f743/products/AD_GZ5391/AD_GZ5391-6.JPG', 170)
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw2629f743/products/AD_GZ5391/AD_GZ5391-6.JPG')
 
+Select P.ID, C.ID as IDCat, C.Nombre as Categoria, M.ID as IDMar, M.Nombre as Marca, T.ID as IDTa, T.Numero as Talle, P.Nombre, P.Descripcion, P.Precio, P.URL_Imagen, T.Stock from Productos as P, Marcas as M, Categorias as C, Talles as T where P.IDMarca = M.ID and P.IDCategoria = C.ID and P.IDTalle = T.ID
+
+Select * from PRODUCTOS
