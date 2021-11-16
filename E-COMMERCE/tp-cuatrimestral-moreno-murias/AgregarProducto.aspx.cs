@@ -20,11 +20,11 @@ namespace tp_cuatrimestral_moreno_murias
                 if (!IsPostBack)
                 {
                     ddlMarcas.DataSource = marcaneg.listar();
-                    ddlMarcas.DataTextField = "NOMBRE";
+                    ddlMarcas.DataTextField = "Nombre";
                     ddlMarcas.DataValueField = "ID";
                     ddlMarcas.DataBind();
                     ddlCategorias.DataSource = categorianeg.listar();
-                    ddlCategorias.DataTextField = "NOMBRE";
+                    ddlCategorias.DataTextField = "Nombre";
                     ddlCategorias.DataValueField = "ID";
                     ddlCategorias.DataBind();
                 }
@@ -42,13 +42,22 @@ namespace tp_cuatrimestral_moreno_murias
             try
             {
                 Producto prod = new Producto();
-
+               
                 prod.Nombre = txtNombre.Text;
                 prod.Descripcion = txtDescripcion.Text;
                 prod.Precio = decimal.Parse(txtPrecio.Text);
                 prod.UrlImagen = txtUrlImagen.Text;
-                prod.Marca = ddlMarcas.SelectedItem.Value;
-                prod.Categoria = ddlCategorias.SelectedItem.Value;
+                Marca Mar = new Marca();
+                Mar.ID=int.Parse(ddlMarcas.SelectedItem.Value);
+                Mar.Nombre = ddlMarcas.SelectedItem.Text;
+                prod.Marca = Mar;
+                Categoria Cate = new Categoria();
+                Cate.ID= int.Parse(ddlCategorias.SelectedItem.Value);
+                Cate.Nombre = ddlCategorias.SelectedItem.Text;
+                prod.Categoria = Cate;
+
+                negocio.agregar(prod);
+                
 
             }
             catch (Exception)
