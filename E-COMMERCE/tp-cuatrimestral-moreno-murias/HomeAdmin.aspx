@@ -24,7 +24,7 @@
 
             <h6>PRODUCTOS</h6>
             <div style="display:flex; flex-direction:row; flex-wrap:wrap">
-                <a href="#" style="text-decoration:none; color:dimgrey;"> 
+                <a href="/AgregarProducto" style="text-decoration:none; color:dimgrey;"> 
                     <div class="card" style="width: 8rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin:10px;">
                       <img src="https://cdn-icons-png.flaticon.com/512/2126/2126961.png" style="width:50px" class="card-img-top" alt="...">
                       <div class="card-body">
