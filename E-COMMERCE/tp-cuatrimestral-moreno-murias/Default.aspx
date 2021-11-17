@@ -6,12 +6,13 @@
     <% foreach (var producto in listaProductos) 
         { %>
         <a href="Detalle.aspx?id=<%:producto.ID %>" style="color:black;">
-        <div class="card" style="width: 12rem; height: 20rem; border: solid 2px black; padding: 10px; margin:10px; border-color:red ">
+        <div class="card" style="width: 12rem; height: 20rem; border: solid 2px black; padding: 10px; margin:10px; border-color:red; border-radius:10px ">
           <img src="<%: producto.UrlImagen %>" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title"><%: producto.Nombre %></h5>
-            <h6 class="card-text"><%: producto.Precio %></h6>
+            <h6 class="card-title"><%: producto.Nombre %></h6>
+            
           </div>
+            <h6 class="card-text" style=" padding: 10px; font-weight:700; background-color: red; border: solid 1px red; border-radius:25px; "><%: producto.Precio %></h6>
         </div>
             </a>
         <%

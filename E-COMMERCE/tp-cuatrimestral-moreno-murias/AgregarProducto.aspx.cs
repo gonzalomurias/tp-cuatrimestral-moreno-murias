@@ -56,9 +56,12 @@ namespace tp_cuatrimestral_moreno_murias
                 Cate.Nombre = ddlCategorias.SelectedItem.Text;
                 prod.Categoria = Cate;
 
-                negocio.agregar(prod);
                 
+                negocio.agregar(prod);
 
+                Response.Write("<script>alert('Hello');</script>");
+
+                //VER CONFIRMACION
             }
             catch (Exception)
             {
