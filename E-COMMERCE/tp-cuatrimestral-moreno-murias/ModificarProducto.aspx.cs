@@ -37,12 +37,67 @@ namespace tp_cuatrimestral_moreno_murias
 
         protected void btn_Editar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/AgregarProducto");
+            int var = Convert.ToInt32((sender as Button).CommandArgument);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
+
+
+            ProductoNegocio negocio = new ProductoNegocio();
+            Producto prod = new Producto();
+            prod = negocio.listar2(var);
+
+            MarcaNegocio marcaNegocio = new MarcaNegocio();
+            CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+
+            ddlMarcas.DataSource = marcaNegocio.listar();
+            ddlMarcas.DataTextField = "Nombre";
+            ddlMarcas.DataValueField = "ID";
+            ddlMarcas.DataBind();
+            ddlCategorias.DataSource = categoriaNegocio.listar();
+            ddlCategorias.DataTextField = "Nombre";
+            ddlCategorias.DataValueField = "ID";
+            ddlCategorias.DataBind();
+            txtNombre.Text = prod.Nombre;
+            txtDescripcion.Text = prod.Descripcion;
+            txtPrecio.Text = prod.Precio.ToString();
+            txtUrlImagen.Text = prod.UrlImagen;
+            ddlMarcas.SelectedValue = prod.Marca.ID.ToString();
+            ddlCategorias.SelectedValue = prod.Categoria.ID.ToString();
+
+            Session.Add("id", var);
+           
         }
 
-        protected void btn_Editar_Click1(object sender, EventArgs e)
+        protected void btnAceptar2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/AgregarProducto");
+           
+            ProductoNegocio negocio = new ProductoNegocio();
+            try
+            {
+                Producto prod = new Producto();
+
+                prod.Nombre = txtNombre.Text;
+                prod.Descripcion = txtDescripcion.Text;
+                prod.Precio = decimal.Parse(txtPrecio.Text);
+                prod.UrlImagen = txtUrlImagen.Text;
+                Marca Mar = new Marca();
+                Mar.ID = int.Parse(ddlMarcas.SelectedItem.Value);
+                Mar.Nombre = ddlMarcas.SelectedItem.Text;
+                prod.Marca = Mar;
+                Categoria Cate = new Categoria();
+                Cate.ID = int.Parse(ddlCategorias.SelectedItem.Value);
+                Cate.Nombre = ddlCategorias.SelectedItem.Text;
+                prod.Categoria = Cate;
+                prod.ID = Convert.ToInt32(Session["id"].ToString());
+
+                negocio.modificar(prod);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
     

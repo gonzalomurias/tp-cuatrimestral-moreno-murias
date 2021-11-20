@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarProducto.aspx.cs" Inherits="tp_cuatrimestral_moreno_murias.ModificarProducto" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ModificarProducto.aspx.cs" Inherits="tp_cuatrimestral_moreno_murias.ModificarProducto" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -9,8 +9,11 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"/>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<%--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"/>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>--%>
+
+
+
 <title>Modificar Producto</title>
 </head>
 <body>
@@ -23,10 +26,17 @@
            <h3>Modificar un producto</h3>
            <hr/>
 
-            <script>$(document).ready(function () {
-                $('.dataTable1').DataTable();
+            <%--<script>
+                require(['jquery', 'datatables.net', 'datatables.net-editor'], function ($) {
+                    $('.dataTable1).DataTable();
+                });
+
+            </script>--%>
+
+            <%--<script>$(document).ready(function () {
+    $('.dataTable1').DataTable(); 
             });
-            </script>
+            </script>--%>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -42,12 +52,68 @@
                                     <asp:BoundField DataField="Precio" HeaderText="Precio" />
                                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150px">
                                     <ItemTemplate>
-                                    <asp:Button ID="btn_Editar" runat="server" Text="Editar" CssClass="btn btn-info" CommandName="Edit"/>
-                                    <asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandName="Delete"/>
+                                    <asp:Button ID="btn_Editar" runat="server" Text="Editar" CssClass="btn btn-info" CommandArgument='<%# Eval("ID") %>' CommandName="Edit" OnClick="btn_Editar_Click" />
+                                    <asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandArgument='<%# Eval("ID") %>' CommandName="Delete"/>
                                     </ItemTemplate>                  
                                     </asp:TemplateField>      
                                 </Columns>
+
+
                             </asp:GridView>
+
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                <label for="txtNombre">Nombre</label>
+                <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="txtDescripcion">Descripción</label>
+                <asp:TextBox runat="server" ID="txtDescripcion" CssClass="form-control"/>
+              </div>
+                <label for="txtPrecio">Precio</label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control"/>
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                <label for="txtUrlImagen">Url Imagen</label>
+                <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control"/>
+              </div>
+            
+            <div style="margin-top: 20px">
+            <label for="formGroupExampleInput2">Categoría</label>
+            <asp:DropDownList runat="server" ID="ddlCategorias" CssClass="btn btn-outline-dark dropdown-toggle" style="text-align:left;margin-left: 20px">
+            </asp:DropDownList>
+            </div>
+            <div style="margin-top: 20px">
+            <label for="formGroupExampleInput2">Marca</label>
+            <asp:DropDownList runat="server" ID="ddlMarcas" CssClass="btn btn-outline-dark dropdown-toogle" style="text-align:left;margin-left: 20px">
+            </asp:DropDownList>
+            </div>
+            <asp:Button Text="Aceptar" ID="btnAceptar2" OnClick="btnAceptar2_Click" runat="server" CssClass="btn btn-dark float-right"/>
+            </div>
+            <div class="modal-footer">
+              <%--  <asp:Button runat="server" ID="btnCancelar" Cssclass="btn btn-secondary" Text="Cancelar" data-dismiss="modal" />
+                <asp:Button runat="server" ID="btnConfirmar" Cssclass="btn btn-primary" Text="Confirmar" OnClick="btnGuardar_Click" />--%>
+            </div>
+        </div>
+    </div>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -57,6 +123,14 @@
 <%--        <div class="col-1"></div>--%>
         </div>
         </div>
+        <script type="text/javascript">
+            function openModal() {
+                $('#exampleModal').modal('show');
+            }
+
+        </script>
+
+
     </form>
 </body>
 </html>
