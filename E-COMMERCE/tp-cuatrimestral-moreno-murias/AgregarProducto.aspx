@@ -55,9 +55,26 @@
             </div>
             <asp:Button Text="Aceptar" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" CssClass="btn btn-dark float-right"/>
         </div>
+                                        <div class="modal fade" id="confirmacionAgregar" tabindex="-1" role="dialog" aria-labelledby="confirmacionAgregar2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmacionAgregar2">Su producto ha sido agregado con éxito! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
         <div class="col-1"></div>
         </div>
         </div>
+        <script type="text/javascript">
+            function openModalAgregar() {
+                $('#confirmacionAgregar').modal('show');
+            }
+        </script>
     </form>
 </body>
 </html>

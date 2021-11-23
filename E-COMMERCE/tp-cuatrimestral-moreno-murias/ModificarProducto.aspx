@@ -9,10 +9,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<%--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css"/>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>--%>
-
-
 
 <title>Modificar Producto</title>
 </head>
@@ -20,24 +16,10 @@
     <form id="form1" runat="server">
         <div class="container">
             <div class="row mt-4">
-        <%--<div class="col-1"></div>--%>
         <div class="col-12">
            <h5>Panel</h5>
            <h3>Modificar un producto</h3>
            <hr/>
-
-            <%--<script>
-                require(['jquery', 'datatables.net', 'datatables.net-editor'], function ($) {
-                    $('.dataTable1).DataTable();
-                });
-
-            </script>--%>
-
-            <%--<script>$(document).ready(function () {
-    $('.dataTable1').DataTable(); 
-            });
-            </script>--%>
-
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <div class="card-body">
@@ -53,7 +35,7 @@
                                     <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150px">
                                     <ItemTemplate>
                                     <asp:Button ID="btn_Editar" runat="server" Text="Editar" CssClass="btn btn-info" CommandArgument='<%# Eval("ID") %>' CommandName="Edit" OnClick="btn_Editar_Click" />
-                                    <asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandArgument='<%# Eval("ID") %>' CommandName="Delete"/>
+                                    <asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandArgument='<%# Eval("ID") %>' CommandName="Delete" OnClick="btn_Eliminar_Click"/>
                                     </ItemTemplate>                  
                                     </asp:TemplateField>      
                                 </Columns>
@@ -65,7 +47,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modificar producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -107,12 +89,57 @@
             <asp:Button Text="Aceptar" ID="btnAceptar2" OnClick="btnAceptar2_Click" runat="server" CssClass="btn btn-dark float-right"/>
             </div>
             <div class="modal-footer">
-              <%--  <asp:Button runat="server" ID="btnCancelar" Cssclass="btn btn-secondary" Text="Cancelar" data-dismiss="modal" />
-                <asp:Button runat="server" ID="btnConfirmar" Cssclass="btn btn-primary" Text="Confirmar" OnClick="btnGuardar_Click" />--%>
             </div>
         </div>
     </div>
 </div>
+    
+    <div class="modal fade" id="confirmacionModificacion" tabindex="-1" role="dialog" aria-labelledby="confirmacionModificacion2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmacionModificacion2">Su producto ha sido modificado con éxito! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>    
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+     <div class="modal fade" id="confirmacionEliminacion" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Desea eliminar este producto?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <asp:Button ID="btnAceptarEliminacion" runat="server" Text="Aceptar" CssClass="btn btn-info" CommandArgument='<%# Eval("ID") %>' CommandName="Aceptar" OnClick="btnAceptarEliminacion_Click" />
+      </div>
+    </div>
+  </div>
+</div>
+                            
+    <div class="modal fade" id="confirmacionEliminacionOK" tabindex="-1" role="dialog" aria-labelledby="confirmacionEliminacionOK2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmacionEliminacionOK2">Su producto ha sido eliminado con éxito! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>    
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+          
 
                         </div>
                     </div>
@@ -120,16 +147,31 @@
             </div>
             
         </div>
-<%--        <div class="col-1"></div>--%>
         </div>
         </div>
         <script type="text/javascript">
             function openModal() {
                 $('#exampleModal').modal('show');
             }
-
         </script>
 
+        <script type="text/javascript">
+            function openModal2() {
+                $('#confirmacionModificacion').modal('show');
+            }
+        </script>
+
+        <script type="text/javascript">
+            function openModalEliminacion() {
+                $('#confirmacionEliminacion').modal('show');
+            }
+        </script>
+
+        <script type="text/javascript">
+            function openModalEliminacionOK() {
+                $('#confirmacionEliminacionOK').modal('show');
+            }
+        </script>
 
     </form>
 </body>

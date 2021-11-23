@@ -18,42 +18,48 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Select P.ID, C.ID as IDCat, C.Nombre as Categoria, M.ID as IDMar, M.Nombre as Marca, P.Nombre, P.Descripcion, P.Precio, P.URL_Imagen from Productos as P, Marcas as M, Categorias as C where P.IDMarca = M.ID and P.IDCategoria = C.ID");
+
+                datos.setearConsulta("Select P.Estado, P.ID, C.ID as IDCat, C.Nombre as Categoria, M.ID as IDMar, M.Nombre as Marca, P.Nombre, P.Descripcion, P.Precio, P.URL_Imagen from Productos as P, Marcas as M, Categorias as C where P.IDMarca = M.ID and P.IDCategoria = C.ID");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Producto aux = new Producto();
 
-                    aux.ID = (int)datos.Lector["ID"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
 
-                    aux.Categoria = new Categoria();
-                    aux.Categoria.ID = (int)datos.Lector["IDCat"];
-                    aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
+                    if (aux.Estado == true)
+                    {
+                        aux.ID = (int)datos.Lector["ID"];
 
-                    aux.Marca = new Marca();
-                    aux.Marca.ID = (int)datos.Lector["IDMar"];
-                    aux.Marca.Nombre = (string)datos.Lector["Marca"];
+                        aux.Categoria = new Categoria();
+                        aux.Categoria.ID = (int)datos.Lector["IDCat"];
+                        aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
 
-                    //aux.Talle = new Talle();
-                    //aux.Talle.ID = (int)datos.Lector["IDTa"];
-                    //aux.Talle.Numero = (int)datos.Lector["Talle"];
-                    //aux.Talle.Stock = (int)datos.Lector["Stock"];
+                        aux.Marca = new Marca();
+                        aux.Marca.ID = (int)datos.Lector["IDMar"];
+                        aux.Marca.Nombre = (string)datos.Lector["Marca"];
 
-                    if (!(datos.Lector["Nombre"] is DBNull))
-                        aux.Nombre = (string)datos.Lector["Nombre"];
+                        //aux.Talle = new Talle();
+                        //aux.Talle.ID = (int)datos.Lector["IDTa"];
+                        //aux.Talle.Numero = (int)datos.Lector["Talle"];
+                        //aux.Talle.Stock = (int)datos.Lector["Stock"];
 
-                    if (!(datos.Lector["Descripcion"] is DBNull))
-                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+                        if (!(datos.Lector["Nombre"] is DBNull))
+                            aux.Nombre = (string)datos.Lector["Nombre"];
 
-                    if (!(datos.Lector["Precio"] is DBNull))
-                        aux.Precio = (decimal)datos.Lector["Precio"];
+                        if (!(datos.Lector["Descripcion"] is DBNull))
+                            aux.Descripcion = (string)datos.Lector["Descripcion"];
 
-                    if (!(datos.Lector["URL_Imagen"] is DBNull))
-                        aux.UrlImagen = (string)datos.Lector["URL_Imagen"];
+                        if (!(datos.Lector["Precio"] is DBNull))
+                            aux.Precio = (decimal)datos.Lector["Precio"];
 
+                        if (!(datos.Lector["URL_Imagen"] is DBNull))
+                            aux.UrlImagen = (string)datos.Lector["URL_Imagen"];
 
-                    lista.Add(aux);
+                        lista.Add(aux);
+                    }
+                
                 }
 
                 return lista;
@@ -166,6 +172,27 @@ namespace Negocio
                 datos.setearParametro("@URL_Imagen", nuevo.UrlImagen);
                 datos.setearParametro("@Precio", nuevo.Precio);
                 datos.setearParametro("@ID", nuevo.ID);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void eliminar(int idCapturado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE PRODUCTOS SET Estado=@Estado where ID="+ idCapturado + "");
+                datos.setearParametro("@Estado", 0);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

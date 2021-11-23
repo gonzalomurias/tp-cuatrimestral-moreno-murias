@@ -59,9 +59,8 @@ namespace tp_cuatrimestral_moreno_murias
                 
                 negocio.agregar(prod);
 
-                Response.Write("<script>alert('Hello');</script>");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalAgregar();", true);
 
-                //VER CONFIRMACION
             }
             catch (Exception)
             {

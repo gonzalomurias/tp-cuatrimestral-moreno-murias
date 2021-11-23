@@ -91,12 +91,34 @@ namespace tp_cuatrimestral_moreno_murias
                 prod.ID = Convert.ToInt32(Session["id"].ToString());
 
                 negocio.modificar(prod);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal2();", true);
+
             }
             catch (Exception)
             {
 
                 throw;
             }
+
+        }
+        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            int var = Convert.ToInt32((sender as Button).CommandArgument);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalEliminacion();", true);
+            Session.Add("id", var);
+
+        }
+
+        protected void btnAceptarEliminacion_Click(object sender, EventArgs e)
+        {
+            int idCapturado = Convert.ToInt32(Session["id"].ToString());
+            ProductoNegocio negocioaux = new ProductoNegocio();
+
+            negocioaux.eliminar(idCapturado);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalEliminacionOK();", true);
+
 
         }
     }
