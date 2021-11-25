@@ -32,7 +32,8 @@
                                     <asp:BoundField DataField="Marca" HeaderText="Marca" />
                                     <asp:BoundField DataField="Categoria" HeaderText="Categoría" />
                                     <asp:BoundField DataField="Precio" HeaderText="Precio" />
-                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="150px">
+                               
+                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center"  HeaderStyle-Width="180px">
                                     <ItemTemplate>
                                     <asp:Button ID="btn_Editar" runat="server" Text="Editar" CssClass="btn btn-info" CommandArgument='<%# Eval("ID") %>' CommandName="Edit" OnClick="btn_Editar_Click" />
                                     <asp:Button ID="btn_Eliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" CommandArgument='<%# Eval("ID") %>' CommandName="Delete" OnClick="btn_Eliminar_Click"/>
