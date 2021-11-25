@@ -31,7 +31,7 @@ namespace tp_cuatrimestral_moreno_murias
                 NombreDetalle.InnerText = prod.Nombre;
                 DescripcionDetalle.InnerText = prod.Descripcion;
                 PrecioDetalle.InnerText = prod.Precio.ToString();
-
+                Session.Add("Url_Imagen", prod.UrlImagen);
                 
                
 

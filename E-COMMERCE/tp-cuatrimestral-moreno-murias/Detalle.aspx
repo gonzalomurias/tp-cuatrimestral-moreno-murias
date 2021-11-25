@@ -3,7 +3,7 @@
    <div class="container">
         <div class="row">
         <div class="col-6">
-            <img src="https://essential.vteximg.com.br/arquivos/ids/329007-1000-1000/306-6674_1.jpg?v=637284445723530000" class="img-thumbnail" alt="..." width="500px">
+            <img src="<%: Session["Url_Imagen"].ToString() %>" width="500px">
 
         </div>
              
