@@ -109,6 +109,7 @@
   <ItemGroup>
     <Content Include="AgregarProducto.aspx" />
     <Content Include="Detalle.aspx" />
+    <Content Include="GestionarStock.aspx" />
     <Content Include="HomeAdmin.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -266,6 +267,13 @@
     </Compile>
     <Compile Include="Detalle.aspx.designer.cs">
       <DependentUpon>Detalle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionarStock.aspx.cs">
+      <DependentUpon>GestionarStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarStock.aspx.designer.cs">
+      <DependentUpon>GestionarStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="HomeAdmin.aspx.cs">
       <DependentUpon>HomeAdmin.aspx</DependentUpon>
