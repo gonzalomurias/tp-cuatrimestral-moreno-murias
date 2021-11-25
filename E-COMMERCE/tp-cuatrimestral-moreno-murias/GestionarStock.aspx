@@ -4,48 +4,82 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<title>Gestionar Stock</title>
+    <title>Gestionar Stock</title>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="container">
-        <div class="row mt-4">
-        <div class="col-12">
-           <h5>Panel</h5>
-           <h3>Gestionar Stock</h3>
-           <hr/>
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <asp:GridView runat="server" id="gvList" CssClass="table table-bordered dataTable1" width="100%" AutoGenerateColumns="false">
-                                <Columns>
-                                    <asp:BoundField DataField="ID" HeaderText="ID" />
-                                    <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center"  HeaderStyle-Width="180px">
-                                    <ItemTemplate>
-                                    <asp:Button ID="btn_Stock" runat="server" Text="Agregar o quitar Stock" CssClass="btn btn-info" CommandArgument='<%# Eval("ID") %>' CommandName="Stock" OnClick="btn_Stock_Click" />
-                                   </ItemTemplate>                  
-                                    </asp:TemplateField>      
-                                </Columns>
-
-
-                            </asp:GridView>
-
-                           
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h5>Panel</h5>
+                    <h3>Gestionar Stock</h3>
+                    <hr />
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <asp:GridView runat="server" ID="gvList" CssClass="table table-bordered dataTable1" Width="100%" AutoGenerateColumns="false">
+                                        <Columns>
+                                            <asp:BoundField DataField="ID" HeaderText="ID" />
+                                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="180px">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="btn_Stock" runat="server" Text="Gestionar Stock" CssClass="btn btn-info" CommandArgument='<%# Eval("ID") %>' CommandName="Stock" OnClick="btn_Stock_Click" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                    <div class="modal fade" id="modalStock" tabindex="-1" role="dialog" aria-labelledby="modalStockLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalStockLabel">Gestionar stock</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="txtNombreStock">Nombre Producto</label>
+                                                        <asp:TextBox runat="server" ID="txtNombreStock" CssClass="form-control" />
+                                                    </div>
+                                                    <div style="margin-top: 20px">
+                                                        <label for="formGroupExampleInput2">Talle</label>
+                                                        <asp:DropDownList runat="server" ID="ddlTallesStock" CssClass="btn btn-outline-dark dropdown-toogle" Style="text-align: left; margin-left: 20px" Height="35px">
+                                                        </asp:DropDownList>
+                                                    </div>
+       
+                                                    <div class="form-group" style="display:flex; flex-direction:row; margin-top:20px;" >
+                                                        <label for="txtStockActual" style="margin-right: 10px">Stock Actual</label>
+                                                        <asp:TextBox runat="server" ID="txtStockActual" CssClass="form-control" Width="20%" Height="35px" style="margin-right: 10px"/>
+                                                        <label for="txtStockNuevo" style="margin-right: 10px">Nuevo Stock</label>
+                                                        <asp:TextBox runat="server" ID="txtStockNuevo" CssClass="form-control" Width="20%" Height="35px"/>
+                                                    </div>
+                                                    <asp:Button Text="Aceptar" ID="btnAceptarStock" OnClick="btnAceptarStock_Click" runat="server" CssClass="btn btn-dark float-right" />
+                                                </div>
+                                                <div class="modal-footer">
+                                                </div>
+                                                <script type="text/javascript">
+                                                    function openModalStock() {
+                                                        $('#modalStock').modal('show');
+                                                    }
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                 </div>
+                    </div>
+                </div>
             </div>
         </div>
-</div>
-</div>
-</div>
     </form>
 </body>
 </html>

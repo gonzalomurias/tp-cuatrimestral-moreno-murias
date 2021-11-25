@@ -30,11 +30,32 @@ namespace tp_cuatrimestral_moreno_murias
             gvList.UseAccessibleHeader = true;
             gvList.HeaderRow.TableSection = TableRowSection.TableHeader;
             gvList.FooterRow.TableSection = TableRowSection.TableFooter;
-
-
         }
 
         protected void btn_Stock_Click(object sender, EventArgs e)
+        {
+            int var = Convert.ToInt32((sender as Button).CommandArgument);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalStock();", true);
+
+            Producto prod = new Producto();
+            ProductoNegocio negocio = new ProductoNegocio();
+
+
+            prod = negocio.listar2(var);
+            txtNombreStock.Enabled = false;
+            txtNombreStock.Text = prod.Nombre;
+
+            TalleNegocio talleNegocio = new TalleNegocio();
+            ddlTallesStock.DataSource = talleNegocio.listar();
+            ddlTallesStock.DataTextField = "Numero";
+            ddlTallesStock.DataValueField = "ID";
+            ddlTallesStock.DataBind();
+
+            txtStockActual.Enabled = false;
+        }
+
+        protected void btnAceptarStock_Click(object sender, EventArgs e)
         {
 
         }

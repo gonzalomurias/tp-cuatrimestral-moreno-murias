@@ -21,7 +21,7 @@ namespace tp_cuatrimestral_moreno_murias
         private void AllData()
         {
             var lista = negocio.listar();
-            if(lista.Count <= 0)
+            if (lista.Count <= 0)
             {
                 return;
             }
@@ -65,12 +65,12 @@ namespace tp_cuatrimestral_moreno_murias
             ddlCategorias.SelectedValue = prod.Categoria.ID.ToString();
 
             Session.Add("id", var);
-           
+
         }
 
         protected void btnAceptar2_Click(object sender, EventArgs e)
         {
-           
+
             ProductoNegocio negocio = new ProductoNegocio();
             try
             {
@@ -122,5 +122,5 @@ namespace tp_cuatrimestral_moreno_murias
 
         }
     }
-    
+
 }

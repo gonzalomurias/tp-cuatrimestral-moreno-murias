@@ -10,7 +10,7 @@ using Negocio;
 namespace tp_cuatrimestral_moreno_murias
 {
     public partial class Detalle : System.Web.UI.Page
-    { 
+    {
         protected void Page_Load(object sender, EventArgs e)
         {
             TalleNegocio talleNegocio = new TalleNegocio();
@@ -19,12 +19,13 @@ namespace tp_cuatrimestral_moreno_murias
             ddlTalles.DataTextField = "Numero";
             ddlTalles.DataValueField = "ID";
             ddlTalles.DataBind();
-                    
-             
+
+
             Producto prod = new Producto();
             ProductoNegocio negocio = new ProductoNegocio();
 
-            if (Request.QueryString["id"] != null){
+            if (Request.QueryString["id"] != null)
+            {
                 int id = int.Parse(Request.QueryString["id"]);
                 prod = negocio.listar2(id);
 
@@ -32,10 +33,7 @@ namespace tp_cuatrimestral_moreno_murias
                 DescripcionDetalle.InnerText = prod.Descripcion;
                 PrecioDetalle.InnerText = prod.Precio.ToString();
                 Session.Add("Url_Imagen", prod.UrlImagen);
-                
-               
 
-                
 
             }
             else

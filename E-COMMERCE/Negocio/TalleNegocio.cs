@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Select Id, Numero, Stock from Talles");
+                datos.setearConsulta("Select Id, Numero from Talles"); // falta stock
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -26,7 +26,7 @@ namespace Negocio
                     Talle aux = new Talle();
                     aux.ID = (int)datos.Lector["Id"];
                     aux.Numero = (int)datos.Lector["Numero"];
-                    aux.Stock = (int)datos.Lector["Stock"];
+                    //aux.Stock = (int)datos.Lector["Stock"];
                     lista.Add(aux);
                 }
 
