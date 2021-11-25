@@ -20,7 +20,6 @@ CREATE TABLE TALLES(
 	ID int primary key identity(1,1),
 	Numero int not null check (Numero >= 34 AND Numero <= 47),
 	Estado bit not null default(1),
-	Stock int default(1)
 )
 
 go
@@ -33,6 +32,13 @@ CREATE TABLE PRODUCTOS(
 	Precio money not null check (Precio>0),
 	URL_Imagen varchar(300) not null,
 	Estado bit not null default(1)
+)
+go
+CREATE TABLE STOCK_X_TALLE(
+	ID int primary key identity(1,1),
+	IDProducto int not null foreign key references PRODUCTOS(ID),
+	IDTalle int not null foreign key references TALLES(ID),
+	Cantidad int not null check (Cantidad >= 0)
 )
 
 USE QuickStrike

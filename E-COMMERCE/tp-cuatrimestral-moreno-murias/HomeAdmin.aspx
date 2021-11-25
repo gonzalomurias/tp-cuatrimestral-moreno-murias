@@ -48,6 +48,15 @@
                        </div>
                       </div>
                 </a>
+                </a>
+                <a href="#" style="text-decoration:none; color:dimgrey;"> 
+                    <div class="card" style="width: 8rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin:10px;">
+                      <img src="https://cdn-icons-png.flaticon.com/512/2979/2979648.png" style="width:50px" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <p class="card-text" style="font-size:14px">Gestionar Stock</p>
+                       </div>
+                      </div>
+                </a>
                 </div>
 
             <hr>
