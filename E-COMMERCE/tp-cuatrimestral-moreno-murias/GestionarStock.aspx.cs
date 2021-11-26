@@ -46,13 +46,20 @@ namespace tp_cuatrimestral_moreno_murias
             txtNombreStock.Enabled = false;
             txtNombreStock.Text = prod.Nombre;
 
+            int idProdAux = prod.ID;
+
             TalleNegocio talleNegocio = new TalleNegocio();
             ddlTallesStock.DataSource = talleNegocio.listar();
             ddlTallesStock.DataTextField = "Numero";
             ddlTallesStock.DataValueField = "ID";
             ddlTallesStock.DataBind();
 
+            int idTalleAux = int.Parse(ddlTallesStock.SelectedItem.Value);
             txtStockActual.Enabled = false;
+            StockProducto stockProductoAux = new StockProducto();
+            StockProductoNegocio stockProductoNegocioAux = new StockProductoNegocio();
+            stockProductoAux = stockProductoNegocioAux.listar(idProdAux, idTalleAux);
+            txtStockActual.Text = stockProductoAux.Cantidad.ToString();
         }
 
         protected void btnAceptarStock_Click(object sender, EventArgs e)
