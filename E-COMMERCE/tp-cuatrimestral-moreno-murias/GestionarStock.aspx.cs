@@ -34,6 +34,8 @@ namespace tp_cuatrimestral_moreno_murias
 
         protected void btn_Stock_Click(object sender, EventArgs e)
         {
+
+            
             int var = Convert.ToInt32((sender as Button).CommandArgument);
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalStock();", true);
@@ -41,8 +43,13 @@ namespace tp_cuatrimestral_moreno_murias
             Producto prod = new Producto();
             ProductoNegocio negocio = new ProductoNegocio();
 
-
             prod = negocio.listar2(var);
+
+            Session.Add("idproducto", prod.ID);
+
+            Session.Add("prod", prod);
+            
+
             txtNombreStock.Enabled = false;
             txtNombreStock.Text = prod.Nombre;
 
@@ -60,10 +67,53 @@ namespace tp_cuatrimestral_moreno_murias
             StockProductoNegocio stockProductoNegocioAux = new StockProductoNegocio();
             stockProductoAux = stockProductoNegocioAux.listar(idProdAux, idTalleAux);
             txtStockActual.Text = stockProductoAux.Cantidad.ToString();
+
         }
 
         protected void btnAceptarStock_Click(object sender, EventArgs e)
         {
+            StockProductoNegocio negocio = new StockProductoNegocio();
+
+            try
+            {
+                StockProducto stock = new StockProducto();
+                Producto prod = new Producto();
+                prod = (Dominio.Producto)Session["prod"];
+                stock.Producto = prod;
+                Talle talle = new Talle();
+                talle.ID = int.Parse(ddlTallesStock.SelectedItem.Value);
+                talle.Numero = int.Parse(ddlTallesStock.SelectedItem.Text);
+                stock.Talle = talle;
+                stock.Cantidad = int.Parse(txtStockNuevo.Text);
+
+                negocio.grabarStock(stock);
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalconfStock();", true);
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
+
+        protected void ddlTallesStock_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            int Idaux = Convert.ToInt32(Session["idproducto"].ToString());
+
+            int idTalleAux = int.Parse(ddlTallesStock.SelectedItem.Value);
+            txtStockActual.Enabled = false;
+            StockProducto stockProductoAux = new StockProducto();
+            StockProductoNegocio stockProductoNegocioAux = new StockProductoNegocio();
+            stockProductoAux = stockProductoNegocioAux.listar(Idaux, idTalleAux);
+            txtStockActual.Text = stockProductoAux.Cantidad.ToString();
 
         }
     }

@@ -94,6 +94,8 @@ namespace tp_cuatrimestral_moreno_murias
 
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal2();", true);
 
+                
+
             }
             catch (Exception)
             {

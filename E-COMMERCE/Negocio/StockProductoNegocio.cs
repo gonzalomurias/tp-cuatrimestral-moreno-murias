@@ -47,5 +47,30 @@ namespace Negocio
             }
 
         }
+
+        public void grabarStock(StockProducto stock)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (@IDProducto, @IDTalle, @Cantidad)");
+                datos.setearParametro("@IDProducto", stock.Producto.ID);
+                datos.setearParametro("@IDTalle", stock.Talle.ID);
+                datos.setearParametro("@Cantidad", stock.Cantidad);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
     }
 }

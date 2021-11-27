@@ -14,6 +14,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+  <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container">
             <div class="row mt-4">
                 <div class="col-12">
@@ -35,6 +36,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
+                                    
                                     <div class="modal fade" id="modalStock" tabindex="-1" role="dialog" aria-labelledby="modalStockLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -46,33 +48,53 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group">
+
                                                         <label for="txtNombreStock">Nombre Producto</label>
                                                         <asp:TextBox runat="server" ID="txtNombreStock" CssClass="form-control" />
                                                     </div>
+                                                     <asp:UpdatePanel runat="server">
+                                                     <ContentTemplate>    
                                                     <div style="margin-top: 20px">
                                                         <label for="formGroupExampleInput2">Talle</label>
-                                                        <asp:DropDownList runat="server" ID="ddlTallesStock" CssClass="btn btn-outline-dark dropdown-toogle" Style="text-align: left; margin-left: 20px" Height="35px">
+                                                        <asp:DropDownList runat="server" ID="ddlTallesStock" CssClass="btn btn-outline-dark dropdown-toogle" AutoPostBack="true" OnSelectedIndexChanged="ddlTallesStock_SelectedIndexChanged" Style="text-align: left; margin-left: 20px" Height="35px">
                                                         </asp:DropDownList>
                                                     </div>
-       
-                                                    <div class="form-group" style="display:flex; flex-direction:row; margin-top:20px;" >
+                                                     
+
+                                                             <div class="form-group" style="display:flex; flex-direction:row; margin-top:20px;" >
                                                         <label for="txtStockActual" style="margin-right: 10px">Stock Actual</label>
                                                         <asp:TextBox runat="server" ID="txtStockActual" CssClass="form-control" Width="20%" Height="35px" style="margin-right: 10px"/>
                                                         <label for="txtStockNuevo" style="margin-right: 10px">Nuevo Stock</label>
-                                                        <asp:TextBox runat="server" ID="txtStockNuevo" CssClass="form-control" Width="20%" Height="35px"/>
+                                                        <asp:TextBox runat="server" ID="txtStockNuevo" CssClass="form-control" Width="20%" Height="35px" />
                                                     </div>
+
+                                                         </ContentTemplate>
+
+                                                     </asp:UpdatePanel>
+                                                    
+                                                    
                                                     <asp:Button Text="Aceptar" ID="btnAceptarStock" OnClick="btnAceptarStock_Click" runat="server" CssClass="btn btn-dark float-right" />
                                                 </div>
                                                 <div class="modal-footer">
                                                 </div>
-                                                <script type="text/javascript">
-                                                    function openModalStock() {
-                                                        $('#modalStock').modal('show');
-                                                    }
-                                                </script>
+                                                
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="modal fade" id="confirmacionStock" tabindex="-1" role="dialog" aria-labelledby="confirmacionStock2" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmacionStock2">Stock actualizado! </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
                                 </div>
                             </div>
                         </div>
@@ -80,6 +102,24 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            function openModalStock() {
+                $('#modalStock').modal('show');
+                $('#modalStock').on('hidden.bs.modal', function () {
+                    window.location.href = "GestionarStock.aspx"
+                })
+
+            }
+        </script>
+                                                
+        <script type="text/javascript">
+            function openModalconfStock() {
+                $('#confirmacionStock').modal('show');
+               
+            }
+         </script>
+
     </form>
 </body>
 </html>

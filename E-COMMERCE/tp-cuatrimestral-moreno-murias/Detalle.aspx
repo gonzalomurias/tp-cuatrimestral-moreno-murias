@@ -3,7 +3,7 @@
    <div class="container">
         <div class="row">
         <div class="col-6">
-            <img src="<%: Session["Url_Imagen"].ToString() %>" width="500px">
+            <img src="<%: Session["Url_Imagen"].ToString() %>" style="border-radius:20px; width:500px">
 
         </div>
              

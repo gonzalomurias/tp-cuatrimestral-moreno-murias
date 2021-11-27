@@ -38,7 +38,7 @@ CREATE TABLE STOCK_X_TALLE(
 	ID int primary key identity(1,1),
 	IDProducto int not null foreign key references PRODUCTOS(ID),
 	IDTalle int not null foreign key references TALLES(ID),
-	Cantidad int not null check (Cantidad >= 0)
+	Cantidad int not null default(0) check (Cantidad >= 0) 
 )
 
 USE QuickStrike
@@ -79,3 +79,24 @@ VALUES (1, 1, 'NIKE AIR MAX 270 REACT', 'Zapatillas Nike Air Max 270 React', 251
 INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
 VALUES (1, 2, 'ADIDAS FORUM EXHIBIT LOW', 'Zapatillas Adidas Forum Exhibit Low', 12999.00,
 'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw2629f743/products/AD_GZ5391/AD_GZ5391-6.JPG')
+
+
+
+go
+CREATE TRIGGER TR_CARGAR_STOCK ON STOCK_x_TALLE
+INSTEAD OF INSERT 
+AS BEGIN
+	declare @IDProducto int
+	declare @IDTalle int 
+	declare @Cantidad int
+	SELECT @IDProducto = IDProducto, @IDTalle = IDTalle, @Cantidad = Cantidad from inserted
+
+IF @IDTalle not in (Select IDTalle from STOCK_X_TALLE WHERE IDProducto=@IDProducto)
+BEGIN 
+INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (@IDProducto, @IDTalle, @Cantidad)
+END
+ELSE BEGIN
+UPDATE STOCK_X_TALLE SET IDProducto=@IDProducto, IDTalle=@IDTalle, Cantidad=@Cantidad WHERE @IDProducto=IDProducto and @IDTalle=IDTalle
+END
+END
+

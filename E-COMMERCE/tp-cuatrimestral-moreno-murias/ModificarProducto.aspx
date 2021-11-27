@@ -149,23 +149,36 @@
             function openModal() {
                 $('#exampleModal').modal('show');
             }
+
+
         </script>
 
         <script type="text/javascript">
             function openModal2() {
                 $('#confirmacionModificacion').modal('show');
+                $('#confirmacionModificacion').on('hidden.bs.modal', function () {
+                    window.location.href = "ModificarProducto.aspx"
+                })
+               
             }
+
         </script>
 
         <script type="text/javascript">
             function openModalEliminacion() {
                 $('#confirmacionEliminacion').modal('show');
+                
             }
+
+
         </script>
 
         <script type="text/javascript">
             function openModalEliminacionOK() {
                 $('#confirmacionEliminacionOK').modal('show');
+                $('#confirmacionEliminacionOK').on('hidden.bs.modal', function () {
+                    window.location.href = "ModificarProducto.aspx"
+                })
             }
         </script>
 
