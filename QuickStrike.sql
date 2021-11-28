@@ -40,6 +40,19 @@ CREATE TABLE STOCK_X_TALLE(
 	IDTalle int not null foreign key references TALLES(ID),
 	Cantidad int not null default(0) check (Cantidad >= 0) 
 )
+go
+CREATE TABLE USUARIOS(
+	ID int primary key identity(1,1),
+	Nombre varchar(20) not null,
+	Apellido varchar(20) not null,
+	DNI varchar(8) not null,
+	Email varchar(50) not null unique,
+	Telefono varchar(20) not null,
+	Pass varchar(50) not null,
+	Perfil int not null default(1),
+	Estado bit not null default(1)
+)
+
 
 USE QuickStrike
 INSERT INTO MARCAS (Nombre) VALUES ('NIKE')
@@ -99,4 +112,5 @@ ELSE BEGIN
 UPDATE STOCK_X_TALLE SET IDProducto=@IDProducto, IDTalle=@IDTalle, Cantidad=@Cantidad WHERE @IDProducto=IDProducto and @IDTalle=IDTalle
 END
 END
+
 
