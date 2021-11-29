@@ -13,5 +13,10 @@ namespace tp_cuatrimestral_moreno_murias
         {
 
         }
+
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }

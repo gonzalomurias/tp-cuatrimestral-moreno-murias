@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div style="display:flex; flex-direction:row; flex-wrap:wrap">
+        
     <% foreach (var producto in listaProductos) 
         { %>
         <a href="Detalle.aspx?id=<%:producto.ID %>" style="color:black;">

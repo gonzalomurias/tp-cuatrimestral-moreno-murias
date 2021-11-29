@@ -34,8 +34,9 @@
     <label for="exampleInputPassword1" style="color:white;">Contraseña</label>
     <asp:TextBox runat="server" type="password" class="form-control" id="txtPass"/>
   </div>
-  
-  <asp:Button runat="server" type="submit" Text="Iniciar Sesión" class="btn" OnClick="btnIngresar_Click" style="background-color:black; color:white; width:100%;" />
+        <label for="" style="color:white;"> ¿No tiene cuenta? </label>
+        <asp:HyperLink runat="server" Text="Cree una" NavigateUrl="/Registrarse.aspx"></asp:HyperLink>
+  <asp:Button runat="server" type="submit" Text="Iniciar Sesión" class="btn" OnClick="btnIngresar_Click" style="background-color:black; color:white; width:100%; margin-top:10px" />
 
     </div>
      
