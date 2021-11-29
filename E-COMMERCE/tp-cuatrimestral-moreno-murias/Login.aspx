@@ -14,7 +14,7 @@
     <title>Iniciar Sesion</title>
 </head>
 <body style="background-color:black; color:white;">
-    <form>
+    <form id="form1" runat="server">
         <div class="container">
             <div class="row ">
 
@@ -28,14 +28,14 @@
 
         <div class="form-group"  >
     <label for="exampleInputEmail1" style="color:white;">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <asp:TextBox runat="server" ID="txtEmail" type="email" class="form-control"  aria-describedby="emailHelp"/>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1" style="color:white;">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <asp:TextBox runat="server" type="password" class="form-control" id="txtPass"/>
   </div>
   
-  <button type="submit" class="btn" style="background-color:black; color:white; width:100%;">Iniciar Sesión</button>
+  <asp:Button runat="server" type="submit" Text="Iniciar Sesión" class="btn" OnClick="btnIngresar_Click" style="background-color:black; color:white; width:100%;" />
 
     </div>
      

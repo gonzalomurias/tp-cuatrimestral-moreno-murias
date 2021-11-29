@@ -11,7 +11,7 @@ namespace Dominio
         CLIENTE = 1,
         ADMIN = 2
     }
-    class Usuario
+    public class Usuario
     {
         public int ID { get; set; }
         public string Nombre { get; set; }
