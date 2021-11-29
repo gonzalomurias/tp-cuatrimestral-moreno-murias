@@ -16,6 +16,7 @@ namespace tp_cuatrimestral_moreno_murias
         {
             ProductoNegocio negocio = new ProductoNegocio();
             listaProductos = negocio.listar();
+            
 
         }
     }
