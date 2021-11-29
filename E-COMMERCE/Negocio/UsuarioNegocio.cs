@@ -11,7 +11,7 @@ namespace Negocio
     {
         public bool IniciarSesion(Usuario usuario)
         {
-            
+
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -47,5 +47,60 @@ namespace Negocio
 
         }
 
+        public bool validar(string mail)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Select Email from USUARIOS where Email = @mail ");
+                datos.setearParametro("@mail", mail);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void agregar(Usuario user)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Insert into USUARIOS (Nombre, Apellido, DNI, Email, Telefono, Pass)values(@Nombre, @Apellido, @DNI, @Email, @Telefono, @Pass)");
+                datos.setearParametro("@Nombre", user.Nombre);
+                datos.setearParametro("@Apellido", user.Apellido);
+                datos.setearParametro("@DNI", user.DNI);
+                datos.setearParametro("@Email", user.Email);
+                datos.setearParametro("@Telefono", user.Telefono);
+                datos.setearParametro("@Pass", user.Pass);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
     }
+
+
 }

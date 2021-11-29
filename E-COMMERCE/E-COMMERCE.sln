@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4337A804-37D4-48DA-A832-901C75C8DD13}"
 	ProjectSection(SolutionItems) = preProject
-		QUICKSTRIKE.sql = QUICKSTRIKE.sql
+		..\QuickStrike.sql = ..\QuickStrike.sql
 	EndProjectSection
 EndProject
 Global

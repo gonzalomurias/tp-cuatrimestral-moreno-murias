@@ -113,4 +113,13 @@ UPDATE STOCK_X_TALLE SET IDProducto=@IDProducto, IDTalle=@IDTalle, Cantidad=@Can
 END
 END
 
+USE QuickStrike
+
+INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Gonzalo', 'Murias', '37786097', 'gonzalomurias@gmail.com', '1130918975', 'adminadmin', 2, 1)
+
+INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Agustina Magali', 'Moreno', '40222046', 'agustinamagalimoreno@gmail.com', '3489680985', 'adminadmin', 2, 1)
+
+
+
+
 
