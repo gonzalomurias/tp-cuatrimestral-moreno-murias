@@ -19,8 +19,11 @@
             <div class="row mt-4">
                 <div class="col-12">
                     <h5>Panel</h5>
+                    <div>
+                    <asp:Button id="btnVolver" runat="server" CssClass="btn btn-dark float-right" Text="Volver" OnClick="btnVolver_Click"></asp:Button>
                     <h3>Gestionar Stock</h3>
-                    <hr />
+                    </div>
+                        <hr />
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <div class="card-body">
@@ -99,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
             </div>
         </div>
 

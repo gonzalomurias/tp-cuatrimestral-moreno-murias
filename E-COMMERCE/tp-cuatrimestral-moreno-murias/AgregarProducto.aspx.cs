@@ -13,6 +13,12 @@ namespace tp_cuatrimestral_moreno_murias
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Perfil == Dominio.Perfil.ADMIN))
+            {
+                Session.Add("error", "Acceso denegado, perfil no autorizado");
+                Response.Redirect("Error.aspx", false);
+            }
+
             MarcaNegocio marcaneg = new MarcaNegocio();
             CategoriaNegocio categorianeg = new CategoriaNegocio();
             try
@@ -67,6 +73,11 @@ namespace tp_cuatrimestral_moreno_murias
 
                 throw;
             }
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HomeAdmin.aspx");
         }
     }
 }

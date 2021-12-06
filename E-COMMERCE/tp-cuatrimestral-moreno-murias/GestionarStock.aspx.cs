@@ -14,6 +14,11 @@ namespace tp_cuatrimestral_moreno_murias
         ProductoNegocio negocio = new ProductoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!(Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).Perfil == Dominio.Perfil.ADMIN))
+            {
+                Session.Add("error", "Acceso denegado, perfil no autorizado");
+                Response.Redirect("Error.aspx", false);
+            }
             AllData();
         }
 
@@ -115,6 +120,10 @@ namespace tp_cuatrimestral_moreno_murias
             stockProductoAux = stockProductoNegocioAux.listar(Idaux, idTalleAux);
             txtStockActual.Text = stockProductoAux.Cantidad.ToString();
 
+        }
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HomeAdmin.aspx");
         }
     }
 }

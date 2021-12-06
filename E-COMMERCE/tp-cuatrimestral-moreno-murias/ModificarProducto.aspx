@@ -18,7 +18,10 @@
             <div class="row mt-4">
                 <div class="col-12">
                     <h5>Panel</h5>
-                    <h3>Modificar un producto</h3>
+                    <div>
+                        <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark float-right" Text="Volver" OnClick="btnVolver_Click"></asp:Button>
+                        <h3>Modificar un producto</h3>
+                    </div>
                     <hr />
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -42,6 +45,7 @@
                                     </asp:GridView>
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
+                                            
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Modificar producto</h5>
@@ -83,7 +87,7 @@
                                                         <asp:DropDownList runat="server" ID="ddlMarcas" CssClass="btn btn-outline-dark dropdown-toogle" Style="text-align: left; margin-left: 20px">
                                                         </asp:DropDownList>
                                                     </div>
-                                                    <asp:Button Text="Aceptar" ID="btnAceptar2" OnClick="btnAceptar2_Click" runat="server" CssClass="btn btn-dark float-right" />
+                                                    <asp:Button Text="Aceptar" ID="btnAceptar2" OnClick="btnAceptar2_Click" runat="server" CssClass="btn btn-dark float-right" CausesValidation="true" ValidationGroup="soloNumeros" />
                                                 </div>
                                                 <div class="modal-footer">
                                                 </div>
@@ -159,7 +163,7 @@
                 $('#confirmacionModificacion').on('hidden.bs.modal', function () {
                     window.location.href = "ModificarProducto.aspx"
                 })
-               
+
             }
 
         </script>
@@ -167,7 +171,7 @@
         <script type="text/javascript">
             function openModalEliminacion() {
                 $('#confirmacionEliminacion').modal('show');
-                
+
             }
 
 

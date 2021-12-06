@@ -28,7 +28,15 @@ namespace tp_cuatrimestral_moreno_murias
                 if (negocio.IniciarSesion(usuario))
                 {
                     Session.Add("usuario", usuario);
-                    Response.Redirect("Tienda.aspx");
+                    if (usuario.Perfil == Dominio.Perfil.ADMIN)
+                    {
+                        Response.Redirect("HomeAdmin.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("Tienda.aspx");
+                    }
+                    
                 }
                 else
                 {

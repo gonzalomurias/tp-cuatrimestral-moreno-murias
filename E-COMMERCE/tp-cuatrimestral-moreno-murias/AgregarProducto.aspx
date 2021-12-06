@@ -18,7 +18,10 @@
                 <div class="col-1"></div>
                 <div class="col-10">
                     <h5>Panel</h5>
-                    <h3>Agregar un producto</h3>
+                    <div>
+                        <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark float-right" Text="Volver" OnClick="btnVolver_Click"></asp:Button>
+                        <h3>Agregar un producto</h3>
+                    </div>
                     <hr />
                     <div class="form-group">
                         <label for="txtNombre">Nombre</label>
@@ -38,6 +41,8 @@
                             <span class="input-group-text">.00</span>
                         </div>
                     </div>
+                    <asp:RegularExpressionValidator ID="RegExpPrecio" runat="server" ControlToValidate="txtPrecio" ErrorMessage="*Ingrese Valores Numericos" ForeColor="Red" ValidationExpression="^[0-9]*"></asp:RegularExpressionValidator>
+
                     <div class="form-group">
                         <label for="txtUrlImagen">Url Imagen</label>
                         <asp:TextBox runat="server" ID="txtUrlImagen" CssClass="form-control" />
