@@ -71,7 +71,7 @@ namespace tp_cuatrimestral_moreno_murias
                 
                 string id = Request.QueryString["id"].ToString();
                 carrito = (List<Producto>)Session["carrito"];
-                listaProductos = (List<Producto>)Session["listaProducto"];
+                listaProductos = (List<Producto>)Session["listaProductos"];
                 carrito.Add(listaProductos.Find(x => x.ID == int.Parse(id)));
                 Session.Add("carrito", carrito);
             }
