@@ -68,7 +68,7 @@
                                                                 <label for="txtStockActual" style="margin-right: 10px">Stock Actual</label>
                                                                 <asp:TextBox runat="server" ID="txtStockActual" CssClass="form-control" Width="20%" Height="35px" Style="margin-right: 10px" />
                                                                 <label for="txtStockNuevo" style="margin-right: 10px">Nuevo Stock</label>
-                                                                <asp:TextBox runat="server" ID="txtStockNuevo" CssClass="form-control" Width="20%" Height="35px" />
+                                                                <asp:TextBox onkeydown="return validNumericos(event)"  runat="server" ID="txtStockNuevo" CssClass="form-control" Width="20%" Height="35px" />
                                                             </div>
 
                                                         </ContentTemplate>
@@ -122,6 +122,26 @@
 
             }
         </script>
+
+        <script>
+            function validNumericos(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (((charCode == 8) || (charCode == 46)
+                    || (charCode >= 35 && charCode <= 40)
+                    || (charCode >= 48 && charCode <= 57)
+                    || (charCode >= 96 && charCode <= 105))) {
+                    $("#<% = txtStockNuevo.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtStockNuevo.ClientID %>").addClass("is-valid");
+                     return true;
+                 }
+                 else {
+                     $("#<% = txtStockNuevo.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtStockNuevo.ClientID %>").addClass("is-invalid");
+                    return false;
+                }
+            }
+        </script>
+
 
     </form>
 </body>

@@ -67,7 +67,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">$</span>
                                                         </div>
-                                                        <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" />
+                                                        <asp:TextBox onkeydown="return validNumericos(event)" runat="server" ID="txtPrecio" CssClass="form-control" />
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">.00</span>
                                                         </div>
@@ -87,7 +87,7 @@
                                                         <asp:DropDownList runat="server" ID="ddlMarcas" CssClass="btn btn-outline-dark dropdown-toogle" Style="text-align: left; margin-left: 20px">
                                                         </asp:DropDownList>
                                                     </div>
-                                                    <asp:Button Text="Aceptar" ID="btnAceptar2" OnClick="btnAceptar2_Click" runat="server" CssClass="btn btn-dark float-right" CausesValidation="true" ValidationGroup="soloNumeros" />
+                                                    <asp:Button Text="Aceptar" ID="btnAceptar2" OnClientClick="return validar()" OnClick="btnAceptar2_Click" runat="server" CssClass="btn btn-dark float-right" CausesValidation="true" ValidationGroup="soloNumeros" />
                                                 </div>
                                                 <div class="modal-footer">
                                                 </div>
@@ -185,6 +185,81 @@
                 })
             }
         </script>
+        <script>
+         function validar() {
+                var nombre = document.getElementById("<% = txtNombre.ClientID %>").value;
+                var descripcion = document.getElementById("<% = txtDescripcion.ClientID %>").value;
+                var precio = document.getElementById("<% = txtPrecio.ClientID %>").value;
+                var imagen = document.getElementById("<% = txtUrlImagen.ClientID %>").value;
+                
+                var valido = true;
+
+                if (nombre === "") {
+                    $("#<% = txtNombre.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtNombre.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtNombre.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtNombre.ClientID %>").addClass("is-valid");
+                }
+
+                if (descripcion === "") {
+                    $("#<% = txtDescripcion.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtDescripcion.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtDescripcion.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtDescripcion.ClientID %>").addClass("is-valid");
+                }
+
+                if (precio === "") {
+                    $("#<% = txtPrecio.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtPrecio.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtPrecio.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtPrecio.ClientID %>").addClass("is-valid");
+                }
+
+                if (imagen === "") {
+                    $("#<% = txtUrlImagen.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtUrlImagen.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtUrlImagen.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtUrlImagen.ClientID %>").addClass("is-valid");
+                 }
+
+                if (!valido) {
+                    return false;
+                }
+            }
+
+    </script>
+
+    <script>
+             function validNumericos(evt) {
+                 var charCode = (evt.which) ? evt.which : event.keyCode
+                 if (((charCode == 8) || (charCode == 46)
+                     || (charCode >= 35 && charCode <= 40)
+                     || (charCode >= 48 && charCode <= 57)
+                     || (charCode >= 96 && charCode <= 105))) {
+                     $("#<% = txtPrecio.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtPrecio.ClientID %>").addClass("is-valid");
+                     return true;
+                 }
+                 else {
+                     $("#<% = txtPrecio.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtPrecio.ClientID %>").addClass("is-invalid");
+                return false;
+            }
+        }
+    </script>
+
 
     </form>
 </body>

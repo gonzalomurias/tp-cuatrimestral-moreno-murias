@@ -13,7 +13,7 @@ namespace tp_cuatrimestral_moreno_murias
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnRegistrarse_Click(object sender, EventArgs e)

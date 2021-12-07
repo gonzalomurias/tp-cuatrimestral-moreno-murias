@@ -27,14 +27,12 @@
 
                             <div class="form-group col-md-6">
                                 <label for="inputNombre">Nombre</label>
-                                <asp:TextBox type="text" class="form-control" runat="server" ID="txtNombreReg" MaxLength="20"></asp:TextBox>
-                                <asp:RegularExpressionValidator ID="RegularExpressionNombreReg" runat="server" ControlToValidate="txtNombreReg" ErrorMessage="*Ingrese Sólo Letras" ForeColor="Red" ValidationExpression="^[A-Za-z]*$"></asp:RegularExpressionValidator>
+                                <asp:TextBox type="text" class="form-control" onkeypress="validLetras()" runat="server" ID="txtNombreReg" MaxLength="20"></asp:TextBox>
 
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputApellido">Apellido</label>
-                                <asp:TextBox type="text" class="form-control" runat="server" ID="txtApellidoReg" MaxLength="20"></asp:TextBox>
-                                <asp:RegularExpressionValidator ID="RegularExpressionApellidoReg" runat="server" ControlToValidate="txtApellidoReg" ErrorMessage="*Ingrese Sólo Letras" ForeColor="Red" ValidationExpression="^[A-Za-z]*$"></asp:RegularExpressionValidator>
+                                <asp:TextBox type="text" class="form-control" onkeypress="validLetras2()"  runat="server" ID="txtApellidoReg" MaxLength="20"></asp:TextBox>
                             </div>
                         </div>
 
@@ -43,7 +41,6 @@
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Email</label>
                                 <asp:TextBox type="email" class="form-control" runat="server" ID="txtEmailReg"></asp:TextBox>
-                                <asp:RegularExpressionValidator ID="RegularExpressionEmailReg" runat="server" ControlToValidate="txtEmailReg" ErrorMessage="*Formato de Email no válido" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
 
                             </div>
                             <div class="form-group col-md-6">
@@ -54,16 +51,14 @@
                         </div>
                         <div class="form-group">
                             <label for="inputDNI">DNI</label>
-                            <asp:TextBox type="text" class="form-control" runat="server" ID="txtDniReg" MaxLength="8"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="RegularExpressionDniReg" runat="server" ControlToValidate="txtDniReg" ErrorMessage="*Ingrese Valores Numericos" ForeColor="Red" ValidationExpression="^[0-9]*"></asp:RegularExpressionValidator>
+                            <asp:TextBox type="text" class="form-control" onkeydown="return validNumericos(event)" runat="server" ID="txtDniReg" MaxLength="8"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label for="inputTelefono">Teléfono</label>
-                            <asp:TextBox type="text" class="form-control" runat="server" ID="txtTelefonoReg" MaxLength="20"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="RegularExpressionTelefonoReg" runat="server" ControlToValidate="txtTelefonoReg" ErrorMessage="*Ingrese Valores Numericos" ForeColor="Red" ValidationExpression="^[0-9]*"></asp:RegularExpressionValidator>
+                            <asp:TextBox type="text" class="form-control" onkeydown="return validNumericos2(event)" runat="server" ID="txtTelefonoReg" MaxLength="20"></asp:TextBox>
                         </div>
 
-                        <asp:Button ID="btnRegistrarse" runat="server" type="submit" CssClass="btn btn-danger float-right" Style="width: 100%" Text="Registrarme" OnClick="btnRegistrarse_Click"></asp:Button>
+                        <asp:Button ID="btnRegistrarse" runat="server" type="submit" CssClass="btn btn-danger float-right" Style="width: 100%" Text="Registrarme" OnClientClick="return validar()" OnClick="btnRegistrarse_Click"></asp:Button>
                     </div>
                 </div>
                 <div class="modal fade" id="confirmacionRegistro" tabindex="-1" role="dialog" aria-labelledby="confirmacionRegistro2" aria-hidden="true">
@@ -90,6 +85,156 @@
                 })
             }
         </script>
+        <script>
+        function validar() {
+                var nombre = document.getElementById("<% = txtNombreReg.ClientID %>").value;
+                var apellido = document.getElementById("<% = txtApellidoReg.ClientID %>").value;
+                var email = document.getElementById("<% = txtEmailReg.ClientID %>").value;
+                var pass = document.getElementById("<% = txtPasswordReg.ClientID %>").value;
+                var dni = document.getElementById("<% = txtDniReg.ClientID %>").value;
+                var tel = document.getElementById("<% = txtTelefonoReg.ClientID %>").value;
+          
+                var valido = true;
+
+                if (nombre === "") {
+                    $("#<% = txtNombreReg.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtNombreReg.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtNombreReg.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtNombreReg.ClientID %>").addClass("is-valid");
+                }
+
+                if (apellido === "") {
+                    $("#<% = txtApellidoReg.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtApellidoReg.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtApellidoReg.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtApellidoReg.ClientID %>").addClass("is-valid");
+                }
+
+                if (email === "") {
+                    $("#<% = txtEmailReg.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtEmailReg.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtEmailReg.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtEmailReg.ClientID %>").addClass("is-valid");
+                }
+
+                if (pass === "") {
+                    $("#<% = txtPasswordReg.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtPasswordReg.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtPasswordReg.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtPasswordReg.ClientID %>").addClass("is-valid");
+                 }
+
+                 if (dni === "") {
+                    $("#<% = txtDniReg.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtDniReg.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtDniReg.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtDniReg.ClientID %>").addClass("is-valid");
+                 }
+
+                 if (tel === "") {
+                    $("#<% = txtTelefonoReg.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtTelefonoReg.ClientID %>").addClass("is-invalid");   
+                    valido = false;
+                }
+                else {
+                    $("#<% = txtTelefonoReg.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtTelefonoReg.ClientID %>").addClass("is-valid");
+                 }
+
+
+                if (!valido) {
+                    return false;
+                }
+            }
+
+    </script>
+
+    <script>
+             function validNumericos(evt) {
+                 var charCode = (evt.which) ? evt.which : event.keyCode
+                 if (((charCode == 8) || (charCode == 46)
+                     || (charCode >= 35 && charCode <= 40)
+                     || (charCode >= 48 && charCode <= 57)
+                     || (charCode >= 96 && charCode <= 105))) {
+                     $("#<% = txtDniReg.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtDniReg.ClientID %>").addClass("is-valid");
+                     return true;
+                 }
+                 else {
+                     $("#<% = txtDniReg.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtDniReg.ClientID %>").addClass("is-invalid");
+                return false;
+            }
+        }
+    </script>
+
+    <script>
+        function validNumericos2(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (((charCode == 8) || (charCode == 46)
+                || (charCode >= 35 && charCode <= 40)
+                || (charCode >= 48 && charCode <= 57)
+                || (charCode >= 96 && charCode <= 105))) {
+                $("#<% = txtTelefonoReg.ClientID %>").removeClass("is-invalid");
+                     $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-valid");
+                     return true;
+                 }
+                 else {
+                     $("#<% =  txtTelefonoReg.ClientID %>").removeClass("is-valid");
+                     $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-invalid");
+                return false;
+            }
+        }
+    </script>
+        <script>
+
+            function validLetras() {
+                if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122)) {
+                    $("#<% = txtNombreReg.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtNombreReg.ClientID %>").addClass("is-invalid");
+                    event.returnValue = false;
+                }
+
+                else {
+                    $("#<% = txtNombreReg.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtNombreReg.ClientID %>").addClass("is-valid");
+                }
+             }
+        </script>
+
+        <script>
+
+            function validLetras2() {
+                if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122)) {
+                    $("#<% = txtApellidoReg.ClientID %>").removeClass("is-valid");
+                    $("#<% = txtApellidoReg.ClientID %>").addClass("is-invalid");
+                    event.returnValue = false;
+                }
+
+                else {
+                    $("#<% = txtApellidoReg.ClientID %>").removeClass("is-invalid");
+                    $("#<% = txtApellidoReg.ClientID %>").addClass("is-valid");
+                }
+            }
+        </script>
+                
+                
+
     </form>
 </body>
 </html>

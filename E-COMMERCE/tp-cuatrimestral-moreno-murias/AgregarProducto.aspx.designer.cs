@@ -60,15 +60,6 @@ namespace tp_cuatrimestral_moreno_murias
         protected global::System.Web.UI.WebControls.TextBox txtPrecio;
 
         /// <summary>
-        /// Control RegExpPrecio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegExpPrecio;
-
-        /// <summary>
         /// Control txtUrlImagen.
         /// </summary>
         /// <remarks>
