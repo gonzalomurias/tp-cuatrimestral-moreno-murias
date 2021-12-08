@@ -20,15 +20,43 @@ namespace tp_cuatrimestral_moreno_murias
                 Session.Add("error", "Acceso denegado, perfil no autorizado");
                 Response.Redirect("Error.aspx", false);
             }
-            AllData();
+            if (txtBuscar.Text == "")
+            {
+                AllData();
+            }
+            else
+            {
+                AllData2();
+            }
+           
+            
         }
 
         private void AllData()
         {
+            lblSinProductos.Visible = false;
             var lista = negocio.listar();
             if (lista.Count <= 0)
             {
                 return;
+            }
+            gvList.DataSource = lista;
+            gvList.DataBind();
+
+            gvList.UseAccessibleHeader = true;
+            gvList.HeaderRow.TableSection = TableRowSection.TableHeader;
+            gvList.FooterRow.TableSection = TableRowSection.TableFooter;
+
+
+        }
+
+        private void AllData2()
+        {
+            lblSinProductos.Visible = false;
+            var lista = negocio.listar3(txtBuscar.Text);
+            if (lista.Count <= 0)
+            {
+                lblSinProductos.Visible = true;
             }
             gvList.DataSource = lista;
             gvList.DataBind();
@@ -132,6 +160,11 @@ namespace tp_cuatrimestral_moreno_murias
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("HomeAdmin.aspx");
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 

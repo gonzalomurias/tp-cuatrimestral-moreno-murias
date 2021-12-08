@@ -20,13 +20,24 @@
                     <h5>Panel</h5>
                     <div>
                         <asp:Button ID="btnVolver" runat="server" CssClass="btn btn-dark float-right" Text="Volver" OnClick="btnVolver_Click"></asp:Button>
-                        <h3>Modificar un producto</h3>
+                        <h3>Modificar / Eliminar un producto</h3>
                     </div>
                     <hr />
+                    
+
                     <div class="card shadow mb-4">
+                       
                         <div class="card-header py-3">
+                            <div class="form-inline my-2 my-lg-0 float-right" style="margin-right:20px;">
+                                
+                                <asp:textbox runat="server"  id="txtBuscar" class="form-control mr-sm-2" type="search"  aria-label="Search"/>
+                    <asp:button runat="server" id="btnBuscar" class="btn btn-outline-success my-2 my-sm-0" Text="Buscar" AutoPostBack="true" OnClick="btnBuscar_Click" type="submit"></asp:button>
+                            </div>
+                             <br />
                             <div class="card-body">
                                 <div class="table-responsive">
+
+
                                     <asp:GridView runat="server" ID="gvList" CssClass="table table-bordered dataTable1" Width="100%" AutoGenerateColumns="false">
                                         <Columns>
                                             <asp:BoundField DataField="ID" HeaderText="ID" />
@@ -43,6 +54,9 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
+
+                                    <asp:label runat="server" id="lblSinProductos" Visible="false" >No se encontraron productos.</asp:label>
+
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             
