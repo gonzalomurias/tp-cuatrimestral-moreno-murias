@@ -19,7 +19,14 @@ namespace tp_cuatrimestral_moreno_murias
                 Session.Add("error", "Acceso denegado, perfil no autorizado");
                 Response.Redirect("Error.aspx", false);
             }
-            AllData();
+            if (txtBuscar.Text == "")
+            {
+                AllData();
+            }
+            else
+            {
+                AllData2();
+            }
         }
 
         private void AllData()
@@ -35,6 +42,24 @@ namespace tp_cuatrimestral_moreno_murias
             gvList.UseAccessibleHeader = true;
             gvList.HeaderRow.TableSection = TableRowSection.TableHeader;
             gvList.FooterRow.TableSection = TableRowSection.TableFooter;
+        }
+
+        private void AllData2()
+        {
+            lblSinProductos.Visible = false;
+            var lista = negocio.listar3(txtBuscar.Text);
+            if (lista.Count <= 0)
+            {
+                lblSinProductos.Visible = true;
+            }
+            gvList.DataSource = lista;
+            gvList.DataBind();
+
+            gvList.UseAccessibleHeader = true;
+            gvList.HeaderRow.TableSection = TableRowSection.TableHeader;
+            gvList.FooterRow.TableSection = TableRowSection.TableFooter;
+
+
         }
 
         protected void btn_Stock_Click(object sender, EventArgs e)
@@ -81,23 +106,23 @@ namespace tp_cuatrimestral_moreno_murias
 
             try
             {
-                StockProducto stock = new StockProducto();
-                Producto prod = new Producto();
-                prod = (Dominio.Producto)Session["prod"];
-                stock.Producto = prod;
-                Talle talle = new Talle();
-                talle.ID = int.Parse(ddlTallesStock.SelectedItem.Value);
-                talle.Numero = int.Parse(ddlTallesStock.SelectedItem.Text);
-                stock.Talle = talle;
-                stock.Cantidad = int.Parse(txtStockNuevo.Text);
+                if (txtStockNuevo.Text != "")
+                {
+                    StockProducto stock = new StockProducto();
+                    Producto prod = new Producto();
+                    prod = (Dominio.Producto)Session["prod"];
+                    stock.Producto = prod;
+                    Talle talle = new Talle();
+                    talle.ID = int.Parse(ddlTallesStock.SelectedItem.Value);
+                    talle.Numero = int.Parse(ddlTallesStock.SelectedItem.Text);
+                    stock.Talle = talle;
+                    stock.Cantidad = int.Parse(txtStockNuevo.Text);
 
-                negocio.grabarStock(stock);
+                    negocio.grabarStock(stock);
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalconfStock();", true);
-
-
-
-
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalconfStock();", true);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -124,6 +149,11 @@ namespace tp_cuatrimestral_moreno_murias
         protected void btnVolver_Click(object sender, EventArgs e)
         {
             Response.Redirect("HomeAdmin.aspx");
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
