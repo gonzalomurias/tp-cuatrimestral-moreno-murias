@@ -56,9 +56,15 @@
     </div>
   </div>
 
-    <asp:ImageButton ID="ibtnCarrito" runat="server" CssClass="btn btn-warning" ImageUrl="https://img.icons8.com/ios-glyphs/30/ffffff/shopping-cart--v1.png" Width="50px"/>
+    <asp:ImageButton ID="ibtnCarrito" runat="server" CssClass="btn btn-warning" ImageUrl="https://img.icons8.com/ios-glyphs/30/ffffff/shopping-cart--v1.png" OnClick="ibtnCarrito_Click" Width="50px"/>
+    <% if (Session["usuario"] == null)
+        {%>
     <asp:Button ID="btnLogin" text="Iniciar Sesión" runat="server" type="button" class="btn btn-danger" style="margin-left: 10px" OnClick="btnLogin_Click"/>
-
+    <%}
+        else
+        { %>
+    <asp:Button ID="btnLogout" text="Cerrar Sesión" runat="server" type="button" class="btn btn-secondary" style="margin-left: 10px" OnClick="btnLogout_Click"/>
+    <% } %>
 </nav>
  
         

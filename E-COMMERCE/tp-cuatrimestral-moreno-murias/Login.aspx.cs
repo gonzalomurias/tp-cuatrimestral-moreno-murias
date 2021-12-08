@@ -13,7 +13,10 @@ namespace tp_cuatrimestral_moreno_murias
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usuario"] != null)
+            {
+                
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -30,25 +33,26 @@ namespace tp_cuatrimestral_moreno_murias
                     Session.Add("usuario", usuario);
                     if (usuario.Perfil == Dominio.Perfil.ADMIN)
                     {
-                        Response.Redirect("HomeAdmin.aspx");
+                        Response.Redirect("HomeAdmin.aspx", false);
                     }
                     else
                     {
-                        Response.Redirect("Tienda.aspx");
+                        Response.Redirect("Tienda.aspx", false);
                     }
                     
                 }
                 else
                 {
-                    Session.Add("error", "Usuario o Contraseña incorrectos.");
-                    Response.Redirect("Error.aspx");
-                        
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalErrorLogin();", true);
+
+
                 }
 
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
                 throw ex;
             }
         }

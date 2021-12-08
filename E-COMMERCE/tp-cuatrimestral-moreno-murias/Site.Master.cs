@@ -18,5 +18,16 @@ namespace tp_cuatrimestral_moreno_murias
         {
             Response.Redirect("Login.aspx");
         }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("usuario");
+            Response.Redirect("Tienda.aspx", false);
+        }
+
+        protected void ibtnCarrito_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("Carrito.aspx", false);
+        }
     }
 }

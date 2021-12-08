@@ -74,6 +74,9 @@ namespace tp_cuatrimestral_moreno_murias
                 listaProductos = (List<Producto>)Session["listaProductos"];
                 carrito.Add(listaProductos.Find(x => x.ID == int.Parse(id)));
                 Session.Add("carrito", carrito);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalAgregado();", true);
+
+
             }
 
         }

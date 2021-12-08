@@ -41,9 +41,36 @@
     </div>
      
   </div>
+    <div class="modal fade" id="ErrorLogin" tabindex="-1" role="dialog" aria-labelledby="ErrorLogin2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background-color:#e30613; color:white;" >
+                <div class="modal-header" >
+                    <h5 class="modal-title" id="ErrorLogin2"> ERROR </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                 <p>Usuario y/o contraseña incorrectos </p>
+            </div>
+         
+            </div>
+        </div>
+    </div>
+
   <div class="col-4"></div>
     </div>
     </div>
+
+            <script type="text/javascript">
+            function openModalErrorLogin() {
+                $('#ErrorLogin').modal('show');
+                $('#ErrorLogin').on('hidden.bs.modal', function () {
+                    window.location.href = "Login.aspx"
+                })
+            }
+</script>
+
 </form>
 </body>
 </html>
