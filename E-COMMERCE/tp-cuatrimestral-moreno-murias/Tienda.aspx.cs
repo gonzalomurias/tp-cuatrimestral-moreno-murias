@@ -15,8 +15,23 @@ namespace tp_cuatrimestral_moreno_murias
         protected void Page_Load(object sender, EventArgs e)
         {
             ProductoNegocio negocio = new ProductoNegocio();
-            listaProductos = negocio.listar();
-            
+
+            string capturaBusqueda = Request.QueryString["search"];
+
+            if (capturaBusqueda == null)
+            {
+                lblNoProducto.Visible = false;
+                listaProductos = negocio.listar();
+            }
+            else
+            {
+                lblNoProducto.Visible = false;
+                listaProductos = negocio.listar3(capturaBusqueda);
+                if (listaProductos.Count <= 0)
+                {
+                    lblNoProducto.Visible = true;
+                }
+            }
 
         }
     }

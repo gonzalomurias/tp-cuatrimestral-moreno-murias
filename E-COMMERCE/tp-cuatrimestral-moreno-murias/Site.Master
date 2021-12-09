@@ -50,9 +50,8 @@
       <a class="nav-link" href="/Nosotros" style="color:white">Nosotros</a>
       <a class="nav-link" href="/FAQ" style="color:white">FAQ</a>
       <a class="nav-link" href="/Contacto" style="color:white; margin-right:200px">Contacto</a>
-      <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-    <%-- MODIFICAR BOTON P/ CONTROL ASP --%>
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+      <asp:TextBox runat="server" ID="txtBuscarWeb" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar"></asp:TextBox>
+      <asp:Button runat="server" ID="btnBuscarWeb" class="btn btn-outline-success my-2 my-sm-0" type="submit" Text="Buscar" OnClick="btnBuscarWeb_Click"></asp:Button>
     </div>
   </div>
 

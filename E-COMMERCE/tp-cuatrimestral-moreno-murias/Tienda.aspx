@@ -1,8 +1,13 @@
 ﻿<%@ Page Title="Tienda" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Tienda.aspx.cs" Inherits="tp_cuatrimestral_moreno_murias.Tienda" %>
+<%@ MasterType VirtualPath="~/Site.Master" %>
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div style="display:flex; flex-direction:row; flex-wrap:wrap">
+
+    <asp:Label runat="server" ID="lblNoProducto" Visible="false">No se encontraron productos.</asp:Label>
         
     <% foreach (var producto in listaProductos) 
         { %>
