@@ -64,7 +64,12 @@
         else
         { %>
     <asp:Button ID="btnLogout" text="Cerrar Sesión" runat="server" type="button" class="btn btn-secondary" style="margin-left: 10px" OnClick="btnLogout_Click"/>
-    <% } %>
+    <%  if (((Dominio.Usuario)Session["usuario"]).Perfil == Dominio.Perfil.ADMIN)
+                {%>
+    <asp:Button ID="btnVerPanel" text="Panel Admin" runat="server" type="button" class="btn btn-light" style="margin-left: 10px" OnClick="btnVerPanel_Click"/>
+                <%}
+        
+        } %>
 </nav>
  
         

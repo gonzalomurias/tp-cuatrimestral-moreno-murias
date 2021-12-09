@@ -29,5 +29,10 @@ namespace tp_cuatrimestral_moreno_murias
         {
             Response.Redirect("Carrito.aspx", false);
         }
+
+        protected void btnVerPanel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HomeAdmin.aspx", false);
+        }
     }
 }

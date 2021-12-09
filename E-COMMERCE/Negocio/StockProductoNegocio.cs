@@ -72,13 +72,13 @@ namespace Negocio
 
         }
 
-        public bool validarStock(int idProdAux, int idTalleAux)
+        public bool validarStock(int idProdAux, int idTalleAux, int cant)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT ST.CANTIDAD as STCANT FROM PRODUCTOS P INNER JOIN STOCK_X_TALLE ST ON ST.IDProducto = P.ID INNER JOIN TALLES T ON T.ID = ST.IDTalle WHERE P.ID =" + idProdAux + "AND T.ID =" + idTalleAux + " and ST.CANTIDAD > 0");
+                datos.setearConsulta("SELECT ST.CANTIDAD as STCANT FROM PRODUCTOS P INNER JOIN STOCK_X_TALLE ST ON ST.IDProducto = P.ID INNER JOIN TALLES T ON T.ID = ST.IDTalle WHERE P.ID =" + idProdAux + "AND T.ID =" + idTalleAux + " and ST.CANTIDAD >= " + cant + "");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -99,8 +99,6 @@ namespace Negocio
             }
 
         }
-
-
 
     }
 }

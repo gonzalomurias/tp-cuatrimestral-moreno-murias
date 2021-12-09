@@ -13,7 +13,7 @@ namespace tp_cuatrimestral_moreno_murias
     {
         public List<Producto> listaProductos { get; set; }
         private List<Producto> carrito;
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,16 +51,16 @@ namespace tp_cuatrimestral_moreno_murias
                 listaProductos = negocio.listar();
                 Session.Add("listaProductos", listaProductos);
 
-                if(Session["carrito"] == null)
+                if (Session["carrito"] == null)
                 {
                     carrito = new List<Producto>();
                     Session.Add("carrito", carrito);
 
                 }
-                
-                
+
+
             }
-            
+
 
         }
 
@@ -68,7 +68,7 @@ namespace tp_cuatrimestral_moreno_murias
         {
             if (Request.QueryString["id"] != null)
             {
-                
+
                 string id = Request.QueryString["id"].ToString();
                 carrito = (List<Producto>)Session["carrito"];
                 listaProductos = (List<Producto>)Session["listaProductos"];
@@ -88,18 +88,56 @@ namespace tp_cuatrimestral_moreno_murias
 
             int idp = int.Parse(Request.QueryString["id"]);
             int idtalle = int.Parse(ddlTalles.SelectedItem.Value);
+            int cantidad = int.Parse(txtCantidad.Text);
 
-            if(!negocio.validarStock(idp, idtalle))
+
+
+            if (!negocio.validarStock(idp, idtalle, cantidad))
             {
                 btnAddCarrito.Text = "NO HAY STOCK";
                 btnAddCarrito.Enabled = false;
             }
             else
             {
-                btnAddCarrito.Text = "AGREGAR AL CARRITO";
-                btnAddCarrito.Enabled = true;
+                if (cantidad != 0)
+                {
+                    btnAddCarrito.Text = "AGREGAR AL CARRITO";
+                    btnAddCarrito.Enabled = true;
+                }
+                else
+                {
+                    btnAddCarrito.Text = "NO HAY STOCK";
+                    btnAddCarrito.Enabled = false;
+                }
             }
 
+        }
+
+        protected void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            StockProductoNegocio negocio = new StockProductoNegocio();
+            int idp = int.Parse(Request.QueryString["id"]);
+            int idtalle = int.Parse(ddlTalles.SelectedItem.Value);
+            int cantidad = int.Parse(txtCantidad.Text);
+
+            if (!negocio.validarStock(idp, idtalle, cantidad))
+            {
+                btnAddCarrito.Text = "NO HAY STOCK";
+                btnAddCarrito.Enabled = false;
+            }
+            else
+            {
+                if (cantidad != 0)
+                {
+                    btnAddCarrito.Text = "AGREGAR AL CARRITO";
+                    btnAddCarrito.Enabled = true;
+                }
+                else
+                {
+                    btnAddCarrito.Text = "NO HAY STOCK";
+                    btnAddCarrito.Enabled = false;
+                }
+            }
         }
     }
 }
