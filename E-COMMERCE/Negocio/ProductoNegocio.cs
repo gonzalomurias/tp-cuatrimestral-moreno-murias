@@ -269,6 +269,127 @@ namespace Negocio
             }
         }
 
+        public List<Producto> listar4(string cadena)
+
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearConsulta("Select P.Estado, P.ID, C.ID as IDCat, C.Nombre as Categoria, M.ID as IDMar, M.Nombre as Marca, P.Nombre, P.Descripcion, P.Precio, P.URL_Imagen from Productos as P inner join MARCAS M on M.ID = P.IDMarca inner join CATEGORIAS C on C.ID = P.IDCategoria where C.Nombre = '" + @cadena + "'");
+                datos.setearParametro("@cadena", cadena);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto aux = new Producto();
+
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    if (aux.Estado == true)
+                    {
+                        aux.ID = (int)datos.Lector["ID"];
+
+                        aux.Categoria = new Categoria();
+                        aux.Categoria.ID = (int)datos.Lector["IDCat"];
+                        aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
+
+                        aux.Marca = new Marca();
+                        aux.Marca.ID = (int)datos.Lector["IDMar"];
+                        aux.Marca.Nombre = (string)datos.Lector["Marca"];
+
+
+                        if (!(datos.Lector["Nombre"] is DBNull))
+                            aux.Nombre = (string)datos.Lector["Nombre"];
+
+                        if (!(datos.Lector["Descripcion"] is DBNull))
+                            aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                        if (!(datos.Lector["Precio"] is DBNull))
+                            aux.Precio = (decimal)datos.Lector["Precio"];
+
+                        if (!(datos.Lector["URL_Imagen"] is DBNull))
+                            aux.UrlImagen = (string)datos.Lector["URL_Imagen"];
+
+                        lista.Add(aux);
+                    }
+
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public List<Producto> listar5(string cadena)
+
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearConsulta("Select P.Estado, P.ID, C.ID as IDCat, C.Nombre as Categoria, M.ID as IDMar, M.Nombre as Marca, P.Nombre, P.Descripcion, P.Precio, P.URL_Imagen from Productos as P inner join MARCAS M on M.ID = P.IDMarca inner join CATEGORIAS C on C.ID = P.IDCategoria where M.Nombre = '" + @cadena + "'");
+                datos.setearParametro("@cadena", cadena);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto aux = new Producto();
+
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    if (aux.Estado == true)
+                    {
+                        aux.ID = (int)datos.Lector["ID"];
+
+                        aux.Categoria = new Categoria();
+                        aux.Categoria.ID = (int)datos.Lector["IDCat"];
+                        aux.Categoria.Nombre = (string)datos.Lector["Categoria"];
+
+                        aux.Marca = new Marca();
+                        aux.Marca.ID = (int)datos.Lector["IDMar"];
+                        aux.Marca.Nombre = (string)datos.Lector["Marca"];
+
+
+                        if (!(datos.Lector["Nombre"] is DBNull))
+                            aux.Nombre = (string)datos.Lector["Nombre"];
+
+                        if (!(datos.Lector["Descripcion"] is DBNull))
+                            aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                        if (!(datos.Lector["Precio"] is DBNull))
+                            aux.Precio = (decimal)datos.Lector["Precio"];
+
+                        if (!(datos.Lector["URL_Imagen"] is DBNull))
+                            aux.UrlImagen = (string)datos.Lector["URL_Imagen"];
+
+                        lista.Add(aux);
+                    }
+
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }
