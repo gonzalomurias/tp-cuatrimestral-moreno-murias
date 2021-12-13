@@ -20,7 +20,7 @@
                 <div class="col-10">
                     <h5>Panel</h5>
                     <div>
-                        <asp:Button id="btnVerSitio" runat="server" CssClass="btn btn-dark float-right" Text="Ver sitio" OnClick="btnVerSitio_Click"></asp:Button>
+                        <asp:Button ID="btnVerSitio" runat="server" CssClass="btn btn-dark float-right" Text="Ver sitio" OnClick="btnVerSitio_Click"></asp:Button>
                         <h3>Bienvenido a tu tienda!</h3>
                     </div>
                     <hr />
@@ -35,7 +35,7 @@
                             </div>
                         </a>
                         <a href="/ModificarProducto" style="text-decoration: none; color: dimgrey;">
-                            <div class="card" style="width: 10rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
+                            <div class="card" style="width: 10.5rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
                                 <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" style="width: 50px" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <p class="card-text" style="font-size: 13px">Editar / Eliminar Producto</p>
@@ -55,9 +55,11 @@
 
                     <hr />
 
-                    <h6>MARCAS</h6>
+                    <h6 style="display: inline">MARCAS</h6>
+                    <h6 style="margin-left: 400px; display: inline">CATEGORIAS</h6>
+
                     <div style="display: flex; flex-direction: row; flex-wrap: wrap">
-                        <a href="#" style="text-decoration: none; color: dimgrey;">
+                        <a href="/AgregarMarca" style="text-decoration: none; color: dimgrey;">
                             <div class="card" style="width: 8rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
                                 <img src="https://cdn-icons-png.flaticon.com/512/1946/1946422.png" style="width: 50px" class="card-img-top" alt="..." />
                                 <div class="card-body">
@@ -65,32 +67,60 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#" style="text-decoration: none; color: dimgrey;">
-                            <div class="card" style="width: 8rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
+                        <a href="/ModificarMarca" style="text-decoration: none; color: dimgrey;">
+                            <div class="card" style="width: 10.5rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
                                 <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" style="width: 50px" class="card-img-top" alt="..." />
                                 <div class="card-body">
-                                    <p class="card-text" style="font-size: 14px">Editar Marca</p>
+                                    <p class="card-text" style="font-size: 14px">Editar / Eliminar Marca</p>
                                 </div>
                             </div>
                         </a>
-                        <a href="#" style="text-decoration: none; color: dimgrey;">
-                            <div class="card" style="width: 8rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
-                                <img src="https://cdn-icons-png.flaticon.com/512/3096/3096673.png" style="width: 50px" class="card-img-top" alt="..." />
+                        <a href="AgregarCategoria" style="text-decoration: none; color: dimgrey;">
+                            <div class="card" style="width: 8rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px; margin-left: 140px">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946422.png" style="width: 50px" class="card-img-top" alt="..." />
                                 <div class="card-body">
-                                    <p class="card-text" style="font-size: 14px">Eliminar Marca</p>
+                                    <p class="card-text" style="font-size: 14px">Agregar Categoría</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="ModificarCategoria" style="text-decoration: none; color: dimgrey;">
+                            <div class="card" style="width: 10.5rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" style="width: 49px" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <p class="card-text" style="font-size: 14px">Editar / Eliminar Categoría</p>
                                 </div>
                             </div>
                         </a>
                     </div>
+                    <hr />
+
+                    <h6 style="display: inline">PEDIDOS</h6>
+                    <h6 style="display: inline; margin-left: 400px">USUARIOS</h6>
+                    <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+                        <a href="#" style="text-decoration: none; color: dimgrey;">
+                            <div class="card" style="width: 10.5rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" style="width: 50px" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <p class="card-text" style="font-size: 14px">Administrar pedidos</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="GestionarUsuariosAdmin" style="text-decoration: none; color: dimgrey;">
+                            <div class="card" style="width: 10rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px; margin-left: 290px">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946422.png" style="width: 50px" class="card-img-top" alt="..." />
+                                <div class="card-body">
+                                    <p class="card-text" style="font-size: 14px">Gestionar Admistradores</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <hr />
+
+
+                    <div class="col-1"></div>
                 </div>
-
-                <div class="col-1"></div>
-            </div>
         </div>
-
-
-
-
 
     </form>
 </body>

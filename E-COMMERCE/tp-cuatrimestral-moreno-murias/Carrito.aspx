@@ -9,7 +9,7 @@
             <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
             <asp:TemplateField HeaderText="Imagen">
                 <ItemTemplate>
-                    <asp:Image ID="Image1" runat="server" width="40px" height="40px" ImageUrl='<%# Eval("Producto.UrlImagen") %>' />
+                    <asp:Image ID="Image1" runat="server" width="40px" height="40px" ImageUrl='<%# Eval("Producto.UrlImagen") %>' align="center" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" />

@@ -100,6 +100,105 @@ namespace Negocio
 
         }
 
+        public List<Usuario> listar()
+
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Select Id, Nombre, Apellido, Email, Estado from USUARIOS where Perfil = 2");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario();
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    if (aux.Estado == true)
+                    {
+                        aux.ID = (int)datos.Lector["ID"];
+
+                        if (!(datos.Lector["Nombre"] is DBNull))
+                            aux.Nombre = (string)datos.Lector["Nombre"];
+
+                        if (!(datos.Lector["Apellido"] is DBNull))
+                            aux.Apellido = (string)datos.Lector["Apellido"];
+
+                        if (!(datos.Lector["Email"] is DBNull))
+                            aux.Email = (string)datos.Lector["Email"];
+
+                        lista.Add(aux);
+                    }
+
+
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void eliminar(int idCapturado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM USUARIOS where ID=" + idCapturado + "");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public void agregar2(Usuario user)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Insert into USUARIOS (Nombre, Apellido, DNI, Email, Telefono, Pass, Perfil)values(@Nombre, @Apellido, @DNI, @Email, @Telefono, @Pass, @Perfil)");
+                datos.setearParametro("@Nombre", user.Nombre);
+                datos.setearParametro("@Apellido", user.Apellido);
+                datos.setearParametro("@DNI", user.DNI);
+                datos.setearParametro("@Email", user.Email);
+                datos.setearParametro("@Telefono", user.Telefono);
+                datos.setearParametro("@Pass", user.Pass);
+                datos.setearParametro("@Perfil", 2);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+
+
+
     }
 
 
