@@ -12,7 +12,9 @@ namespace tp_cuatrimestral_moreno_murias
     public partial class Detalle : System.Web.UI.Page
     {
         public List<Producto> listaProductos { get; set; }
-        private List<Producto> carrito;
+
+        private List<ItemCarrito> carrito { get; set; }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,7 +55,7 @@ namespace tp_cuatrimestral_moreno_murias
 
                 if (Session["carrito"] == null)
                 {
-                    carrito = new List<Producto>();
+                    carrito = new List<ItemCarrito>();
                     Session.Add("carrito", carrito);
 
                 }
@@ -70,10 +72,23 @@ namespace tp_cuatrimestral_moreno_murias
             {
 
                 string id = Request.QueryString["id"].ToString();
-                carrito = (List<Producto>)Session["carrito"];
+                carrito = (List<ItemCarrito>)Session["carrito"];
                 listaProductos = (List<Producto>)Session["listaProductos"];
-                carrito.Add(listaProductos.Find(x => x.ID == int.Parse(id)));
+
+                Producto prod = new Producto();
+                prod = listaProductos.Find(x => x.ID == int.Parse(id));
+
+                ItemCarrito item = new ItemCarrito();
+
+                item.ID = carrito.Count() + 1;
+                item.Producto = prod;
+                item.Talle = ddlTalles.SelectedItem.Text;
+                item.Cantidad = int.Parse(txtCantidad.Text);
+
+                carrito.Add(item);
                 Session.Add("carrito", carrito);
+
+
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalAgregado();", true);
 
 
