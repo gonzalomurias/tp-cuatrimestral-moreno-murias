@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using X.PagedList;
 
 namespace tp_cuatrimestral_moreno_murias
 {
@@ -66,5 +67,9 @@ namespace tp_cuatrimestral_moreno_murias
             }
 
         }
+
+        
+
+
     }
 }

@@ -46,7 +46,7 @@ namespace tp_cuatrimestral_moreno_murias
             decimal total = 0;
             for (int i = 0; i < gvCarrito.Rows.Count; i++)
             {
-                total += (Convert.ToDecimal(gvCarrito.Rows[i].Cells[3].Text) * Convert.ToDecimal(gvCarrito.Rows[i].Cells[4].Text));
+                total += (Convert.ToDecimal(gvCarrito.Rows[i].Cells[4].Text) * Convert.ToDecimal(gvCarrito.Rows[i].Cells[5].Text));
             }
             lblTotal.Text = "$ "+ total.ToString("N2");
         }

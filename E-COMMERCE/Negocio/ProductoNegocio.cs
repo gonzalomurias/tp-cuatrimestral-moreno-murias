@@ -10,6 +10,7 @@ namespace Negocio
 {
     public class ProductoNegocio
     {
+
         public List<Producto> listar()
 
         {

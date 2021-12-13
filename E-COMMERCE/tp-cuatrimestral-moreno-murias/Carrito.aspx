@@ -4,9 +4,14 @@
 
     <%--     <asp:GridView runat="server" ID="gvCarrito" CssClass="table table-bordered dataTable1" style="color:white" Width="100%" />--%>
 
-    <asp:GridView runat="server" ID="gvCarrito" CssClass="table table-bordered dataTable1" Width="100%" AutoGenerateColumns="false" Style="color: white">
+    <asp:GridView runat="server" ID="gvCarrito" CssClass="table table-bordered dataTable1" Width="100%" AutoGenerateColumns="false" Style="color: white;">
         <Columns>
-            <asp:BoundField DataField="ID" HeaderText="ID" Visible="false"/>
+            <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
+            <asp:TemplateField HeaderText="Imagen">
+                <ItemTemplate>
+                    <asp:Image ID="Image1" runat="server" width="40px" height="40px" ImageUrl='<%# Eval("Producto.UrlImagen") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" />
             <asp:BoundField DataField="Talle" HeaderText="Talle" />
             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
@@ -20,16 +25,21 @@
         </Columns>
     </asp:GridView>
 
-    <%if (Session["carrito"] != null) { %>
-    <div  class="badge badge-danger"  style="display:flex; justify-content:space-between; font-size:18px; height:30px;">
-      <span>  <asp:Label Text="Total" ID="lblTotal1" runat="server" />    </span>
-      <span> <asp:Label Text="" ID="lblTotal" runat="server" />  </span>
+    <%if (Session["carrito"] != null)
+        { %>
+    <div class="badge badge-danger" style="display: flex; justify-content: space-between; font-size: 18px; height: 30px;">
+        <span>
+            <asp:Label Text="Total" ID="lblTotal1" runat="server" />
+        </span>
+        <span>
+            <asp:Label Text="" ID="lblTotal" runat="server" />
+        </span>
     </div>
     <%} %>
 
-    <div style="font-size:24px; ">
+    <div style="font-size: 24px;">
         <asp:Label runat="server" ID="lblCarritoVacio" Visible="false">CARRITO VACÍO</asp:Label>
     </div>
-    
+
 
 </asp:Content>
