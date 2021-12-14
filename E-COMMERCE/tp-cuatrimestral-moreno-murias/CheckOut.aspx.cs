@@ -13,20 +13,34 @@ namespace tp_cuatrimestral_moreno_murias
     {
         Direccion direc = new Direccion();
         Pedido pedido = new Pedido();
+        decimal total = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             FormaPagoNegocio formaPagoNegocio = new FormaPagoNegocio();
             try
             {
-                AllDataCarrito();
-
-                if (!IsPostBack)
+               if(Session["usuario"] == null)
                 {
-                    ddlFormasPago.DataSource = formaPagoNegocio.listar();
-                    ddlFormasPago.DataTextField = "Nombre";
-                    ddlFormasPago.DataValueField = "ID";
-                    ddlFormasPago.DataBind();
+                    Session.Add("error", "Acceso Denegado");
+                    Response.Redirect("Error.aspx", false);
                 }
+                else
+                {
+
+                    AllDataCarrito();
+
+                    if (!IsPostBack)
+                    {
+                        ddlFormasPago.DataSource = formaPagoNegocio.listar();
+                        ddlFormasPago.DataTextField = "Nombre";
+                        ddlFormasPago.DataValueField = "ID";
+                        ddlFormasPago.DataBind();
+                    }
+
+
+                }
+
+                
             }
             catch (Exception)
             {
@@ -44,10 +58,10 @@ namespace tp_cuatrimestral_moreno_murias
 
             gvCarrito.DataSource = lista;
             gvCarrito.DataBind();
-            //gvCarrito.UseAccessibleHeader = true;
-            //gvCarrito.HeaderRow.TableSection = TableRowSection.TableHeader;
+            gvCarrito.UseAccessibleHeader = true;
+            gvCarrito.HeaderRow.TableSection = TableRowSection.TableHeader;
             gvCarrito.FooterRow.TableSection = TableRowSection.TableFooter;
-            decimal total = 0;
+            
             for (int i = 0; i < gvCarrito.Rows.Count; i++)
             {
                 total += (Convert.ToDecimal(gvCarrito.Rows[i].Cells[4].Text) * Convert.ToDecimal(gvCarrito.Rows[i].Cells[5].Text));
@@ -83,6 +97,7 @@ namespace tp_cuatrimestral_moreno_murias
             }
             else
             {
+                 
                 direc.Calle = "Av. Cabildo";
                 direc.Numero = "2230";
                 direc.Ciudad = "CABA";
@@ -91,7 +106,16 @@ namespace tp_cuatrimestral_moreno_murias
                 direc.Pais = "Argentina";
             }
 
+            FormaPago fp = new FormaPago();
+            fp.ID = int.Parse(ddlFormasPago.SelectedItem.Value);
+            fp.Nombre = ddlFormasPago.SelectedItem.Text;
+            pedido.FPago = fp;
+            pedido.Total = total;
             
+            PedidoNegocio negocio = new PedidoNegocio();
+            negocio.agregar(pedido);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalPedidoOk();", true);
         }
     }
 }

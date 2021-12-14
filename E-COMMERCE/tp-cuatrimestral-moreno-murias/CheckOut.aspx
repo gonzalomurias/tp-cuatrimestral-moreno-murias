@@ -129,7 +129,35 @@
             </div>
          </div>
           
+        <div class="modal fade" id="confirmacionPedido" tabindex="-1" role="dialog" aria-labelledby="confirmacionPedido2" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmacionPedido2">GRACIAS!</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" style=" text-align:center; "> 
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/864/864800.png" width="70px" alt="Alternate Text" />
+                                                    <h6 style="margin-top:25px;">Su pedido se ha realizado con éxito.</h6>
+                                                    <h6>Nos comunicaremos vía Email para gestionar el envío y pago. </h6>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
           
+        <script type="text/javascript">
+            function openModalPedidoOk() {
+                $('#confirmacionPedido').modal('show');
+                $('#confirmacionPedido').on('hidden.bs.modal', function () {
+                    window.location.href = "Tienda.aspx"
+                })
+
+            }
+
+        </script>
 
          <script>
              function validar() {

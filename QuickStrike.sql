@@ -40,6 +40,18 @@ CREATE TABLE STOCK_X_TALLE(
 	IDTalle int not null foreign key references TALLES(ID),
 	Cantidad int not null default(0) check (Cantidad >= 0) 
 )
+
+go
+CREATE TABLE DIRECCIONES(
+	ID int not null primary key identity(1,1),
+	Calle varchar(200) not null,
+	Numero varchar(10) not null,
+	CP varchar(5) not null,
+	Ciudad varchar(50) not null,
+	Provincia varchar(50) not null,
+	Pais varchar(50) not null,
+)
+
 go
 CREATE TABLE USUARIOS(
 	ID int primary key identity(1,1),
@@ -61,17 +73,16 @@ CREATE TABLE FORMASPAGO(
 )
 
 
-drop table DIRECCIONES
-go
-CREATE TABLE DIRECCIONES(
+
+
+CREATE TABLE PEDIDOS(
 	ID int not null primary key identity(1,1),
-	Calle varchar(200) not null,
-	Numero varchar(10) not null,
-	CP varchar(5) not null,
-	Ciudad varchar(50) not null,
-	Provincia varchar(50) not null,
-	Pais varchar(50) not null,
-)
+	IDFormaPago int not null foreign key references FORMASPAGO(ID),
+	FechaPedido DateTime not null, 
+	Total money not null,
+	Despachado bit not null default(0),
+	Estado bit not null default(1)
+	)
 
 USE QuickStrike
 INSERT INTO MARCAS (Nombre) VALUES ('NIKE')
@@ -144,4 +155,5 @@ INSERT INTO FORMASPAGO (Nombre) VALUES ('TRANSFERENCIA BANCARIA')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('MERCADO PAGO')
 
 
+select * from PEDIDOS
 

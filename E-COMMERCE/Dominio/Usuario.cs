@@ -22,6 +22,7 @@ namespace Dominio
         public string Pass { get; set; }
         public Perfil Perfil { get; set; }
         public bool Estado { get; set; }
-    
+        
+      
     }
 }

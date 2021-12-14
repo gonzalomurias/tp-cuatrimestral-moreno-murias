@@ -13,6 +13,8 @@ namespace tp_cuatrimestral_moreno_murias
     {
 
         public List<ItemCarrito> carrito { get; set; }
+        public List<ItemCarrito> Cart { get; internal set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             this.gvCarrito.BorderColor = System.Drawing.Color.Black;
