@@ -15,6 +15,7 @@ namespace tp_cuatrimestral_moreno_murias
         public List<ItemCarrito> carrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.gvCarrito.BorderColor = System.Drawing.Color.Black;
 
             if (Session["carrito"] == null )
             {
@@ -85,6 +86,19 @@ namespace tp_cuatrimestral_moreno_murias
                 throw;
             }
             
+        }
+
+        protected void btnFinalizarCompra_Click(object sender, EventArgs e)
+        {
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("Login.aspx", false);
+            }
+            else
+            {
+                Response.Redirect("CheckOut.aspx", false);
+            }
+
         }
     }
 }

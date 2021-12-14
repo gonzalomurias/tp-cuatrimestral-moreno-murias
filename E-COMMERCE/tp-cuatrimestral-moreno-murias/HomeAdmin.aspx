@@ -99,7 +99,7 @@
                     <div style="display: flex; flex-direction: row; flex-wrap: wrap">
                         <a href="#" style="text-decoration: none; color: dimgrey;">
                             <div class="card" style="width: 10.5rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px;">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" style="width: 50px" class="card-img-top" alt="..." />
+                                <img src="https://cdn-icons.flaticon.com/png/512/1337/premium/1337232.png?token=exp=1639439716~hmac=eb781ecbf5f71b5c6aaa0697a4b14cf0" style="width: 50px" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <p class="card-text" style="font-size: 14px">Administrar pedidos</p>
                                 </div>
@@ -107,7 +107,7 @@
                         </a>
                         <a href="GestionarUsuariosAdmin" style="text-decoration: none; color: dimgrey;">
                             <div class="card" style="width: 10rem; height: 9.5rem; border: solid 2px dimgrey; padding: 12px; margin: 10px; margin-left: 290px">
-                                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946422.png" style="width: 50px" class="card-img-top" alt="..." />
+                                <img src="https://cdn-icons-png.flaticon.com/512/2444/2444479.png" style="width: 50px" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <p class="card-text" style="font-size: 14px">Gestionar Admistradores</p>
                                 </div>

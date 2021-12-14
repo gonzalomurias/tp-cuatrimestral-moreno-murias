@@ -53,6 +53,25 @@ CREATE TABLE USUARIOS(
 	Estado bit not null default(1)
 )
 
+go
+CREATE TABLE FORMASPAGO(
+	ID int primary key identity(1,1),
+	Nombre varchar(30) not null,
+	Estado bit not null default(1)
+)
+
+
+drop table DIRECCIONES
+go
+CREATE TABLE DIRECCIONES(
+	ID int not null primary key identity(1,1),
+	Calle varchar(200) not null,
+	Numero varchar(10) not null,
+	CP varchar(5) not null,
+	Ciudad varchar(50) not null,
+	Provincia varchar(50) not null,
+	Pais varchar(50) not null,
+)
 
 USE QuickStrike
 INSERT INTO MARCAS (Nombre) VALUES ('NIKE')
@@ -120,6 +139,9 @@ INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Esta
 INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Agustina Magali', 'Moreno', '40222046', 'agustinamagalimoreno@gmail.com', '3489680985', 'adminadmin', 2, 1)
 
 
+INSERT INTO FORMASPAGO (Nombre) VALUES ('EFECTIVO')
+INSERT INTO FORMASPAGO (Nombre) VALUES ('TRANSFERENCIA BANCARIA')
+INSERT INTO FORMASPAGO (Nombre) VALUES ('MERCADO PAGO')
 
 
 

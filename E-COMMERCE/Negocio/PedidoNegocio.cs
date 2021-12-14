@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio;
 
-namespace Dominio
+namespace Negocio
 {
-    public class Carrito
+    public class PedidoNegocio
     {
-        public int ID { get; set; }
 
-        public List<ItemCarrito> items { get; set; }
+
     }
 }

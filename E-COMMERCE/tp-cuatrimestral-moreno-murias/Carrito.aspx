@@ -4,7 +4,7 @@
 
     <%--     <asp:GridView runat="server" ID="gvCarrito" CssClass="table table-bordered dataTable1" style="color:white" Width="100%" />--%>
 
-    <asp:GridView runat="server" ID="gvCarrito" CssClass="table table-bordered dataTable1" Width="100%" AutoGenerateColumns="false" Style="color: white;">
+    <asp:GridView runat="server" ID="gvCarrito" CssClass="table dataTable1" Width="100%" AutoGenerateColumns="false" Style="color: white;">
         <Columns>
             <asp:BoundField DataField="ID" HeaderText="ID" Visible="false" />
             <asp:TemplateField HeaderText="Imagen">
@@ -36,6 +36,10 @@
         </span>
     </div>
     <%} %>
+
+    <div style="margin-top:10px;" align="center">
+        <asp:Button runat="server" ID="btnFinalizarCompra" style="font-size:20px;" Text="FINALIZAR COMPRA" CssClass="btn btn-dark" OnClick="btnFinalizarCompra_Click" />
+    </div>
 
     <div style="font-size: 24px;">
         <asp:Label runat="server" ID="lblCarritoVacio" Visible="false">CARRITO VACÍO</asp:Label>
