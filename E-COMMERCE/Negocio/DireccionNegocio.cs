@@ -33,5 +33,35 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public Direccion buscarID(string calle, string numero, string ciudad, string provincia, string cp, string pais)
+        {
+            Direccion aux = new Direccion();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Select TOP 1 ID From Direcciones where Calle = '" + calle + "' and Numero = '" + numero + "' and CP = '" + cp + "' and Ciudad = '" + ciudad + "' and Provincia = '" + provincia + "' and Pais = '" + pais + "'");
+                datos.ejecutarAccion();
+
+
+                while (datos.Lector.Read())
+                {
+                    aux.ID = (int)datos.Lector["ID"];
+                }
+
+
+                return aux;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

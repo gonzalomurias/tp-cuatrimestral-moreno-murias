@@ -10,7 +10,10 @@ namespace Dominio
     {
         public int ID { get; set; }
 
-        
+        public Usuario User { get; set; }
+
+        public Direccion Direccion { get; set; }
+
         public FormaPago FPago { get; set; }
 
         public DateTime FechaPedido { get; set; }

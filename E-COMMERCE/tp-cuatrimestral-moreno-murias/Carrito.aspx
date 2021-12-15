@@ -34,12 +34,20 @@
         <span>
             <asp:Label Text="" ID="lblTotal" runat="server" />
         </span>
+        
     </div>
     <%} %>
 
+    <%if (Session["carrito"] != null)
+        { %>
     <div style="margin-top:10px;" align="center">
         <asp:Button runat="server" ID="btnFinalizarCompra" style="font-size:20px;" Text="FINALIZAR COMPRA" CssClass="btn btn-dark" OnClick="btnFinalizarCompra_Click" />
     </div>
+        
+    </div>
+    <%} %>
+
+    
 
     <div style="font-size: 24px;">
         <asp:Label runat="server" ID="lblCarritoVacio" Visible="false">CARRITO VACÍO</asp:Label>

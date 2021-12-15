@@ -80,7 +80,7 @@
                     <div class="card-body" style="color: white;">
                         <p align="left">
                             Las entregas se realizan en cajas cerradas a través de empresas de correo logístico especializadas en distribución y 
-                        entrega de mercaderías. También es posible retirar la mercadería desde nuestro local QuickStrike en Av. Santa Fé 3264 (CABA).
+                        entrega de mercaderías. También es posible retirar la mercadería desde nuestro local QuickStrike en Av. Cabildo 2230 (CABA).
                         </p>
                     </div>
                 </div>

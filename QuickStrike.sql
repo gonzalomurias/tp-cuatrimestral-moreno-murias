@@ -77,6 +77,8 @@ CREATE TABLE FORMASPAGO(
 
 CREATE TABLE PEDIDOS(
 	ID int not null primary key identity(1,1),
+	IDDireccion int not null foreign key references DIRECCIONES(ID), 
+	IDUsuario int not null foreign key references USUARIOS(ID),
 	IDFormaPago int not null foreign key references FORMASPAGO(ID),
 	FechaPedido DateTime not null, 
 	Total money not null,
@@ -157,3 +159,6 @@ INSERT INTO FORMASPAGO (Nombre) VALUES ('MERCADO PAGO')
 
 select * from PEDIDOS
 
+select * from DIRECCIONES
+
+Select TOP 1 ID From Direcciones where Calle = 'Rosetti' and Numero = '2923' and CP = '1636' and Ciudad = 'Olivos' and Provincia = 'Buenos Aires' and Pais = 'Argentina'

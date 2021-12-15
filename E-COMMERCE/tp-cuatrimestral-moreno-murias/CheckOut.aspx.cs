@@ -66,56 +66,106 @@ namespace tp_cuatrimestral_moreno_murias
             {
                 total += (Convert.ToDecimal(gvCarrito.Rows[i].Cells[4].Text) * Convert.ToDecimal(gvCarrito.Rows[i].Cells[5].Text));
             }
-            lblTotal.Text = "$ " + total.ToString("N2");
+
+            decimal envio;
+
+            if (CheckBox2.Checked==false)
+            {
+                lblTotal.Text = "$ " + total.ToString("N2");
+            }
+            else
+            {
+                envio = 500;
+                total = total + envio;
+                Label2.Text = "$ " + envio.ToString("N2");
+                lblTotal.Text = "$ " + total.ToString("N2");
+            }
 
         }
         protected void customCheck1_CheckedChanged(object sender, EventArgs e)
         {
             if(cbRetirar.Checked == true)
             {
+
                 txtCalle.Text = " ";
                 txtNumero.Text = " ";
                 txtCiudad.Text = " ";
                 txtCP.Text = " ";
                 txtProvincia.Text = " ";
                 txtPais.Text = " ";
+
             }
             
         }
 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
+
+            DireccionNegocio dirNeg = new DireccionNegocio();
+
             if (cbRetirar.Checked == false)
             {
+               
+
                 direc.Calle = txtCalle.Text;
                 direc.Numero = txtNumero.Text;
                 direc.Ciudad = txtCiudad.Text;
                 direc.Provincia = txtProvincia.Text;
                 direc.CP = txtCP.Text;
                 direc.Pais = txtPais.Text;
+                dirNeg.guardar(direc);
 
             }
             else
             {
-                 
+               
+
                 direc.Calle = "Av. Cabildo";
                 direc.Numero = "2230";
                 direc.Ciudad = "CABA";
                 direc.Provincia = "Buenos Aires";
                 direc.CP = "C1429";
                 direc.Pais = "Argentina";
+
+                dirNeg.guardar(direc);
             }
+
 
             FormaPago fp = new FormaPago();
             fp.ID = int.Parse(ddlFormasPago.SelectedItem.Value);
             fp.Nombre = ddlFormasPago.SelectedItem.Text;
             pedido.FPago = fp;
             pedido.Total = total;
-            
+            int dirID = dirNeg.buscarID(direc.Calle, direc.Numero, direc.Ciudad, direc.Provincia, direc.CP, direc.Pais).ID;
+            pedido.Direccion.ID = dirID;
+            pedido.User.ID = ((Dominio.Usuario)Session["usuario"]).ID;
             PedidoNegocio negocio = new PedidoNegocio();
             negocio.agregar(pedido);
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalPedidoOk();", true);
+
+        }
+
+        protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CheckBox2.Checked == true)
+            {
+                txtCalle.ReadOnly = false;
+                txtNumero.ReadOnly = false;
+                txtCiudad.ReadOnly = false;
+                txtCP.ReadOnly = false;
+                txtProvincia.ReadOnly = false;
+                txtPais.ReadOnly = false;
+            }
+            else
+            {
+                txtCalle.ReadOnly = true;
+                txtNumero.ReadOnly = true;
+                txtCiudad.ReadOnly = true;
+                txtCP.ReadOnly = true;
+                txtProvincia.ReadOnly = true;
+                txtPais.ReadOnly = true;
+            }
         }
     }
 }
