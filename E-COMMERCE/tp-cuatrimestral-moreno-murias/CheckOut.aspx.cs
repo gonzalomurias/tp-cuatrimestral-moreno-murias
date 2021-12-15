@@ -136,9 +136,12 @@ namespace tp_cuatrimestral_moreno_murias
             fp.Nombre = ddlFormasPago.SelectedItem.Text;
             pedido.FPago = fp;
             pedido.Total = total;
-            int dirID = dirNeg.buscarID(direc.Calle, direc.Numero, direc.Ciudad, direc.Provincia, direc.CP, direc.Pais).ID;
-            pedido.Direccion.ID = dirID;
-            pedido.User.ID = ((Dominio.Usuario)Session["usuario"]).ID;
+            Direccion dir = new Direccion();
+            dir = dirNeg.buscarID(direc.Calle, direc.Numero, direc.Ciudad, direc.Provincia, direc.CP, direc.Pais);
+            pedido.Direccion = dir;
+            Usuario usuario = new Usuario();
+
+            pedido.User= ((Dominio.Usuario)Session["usuario"]);
             PedidoNegocio negocio = new PedidoNegocio();
             negocio.agregar(pedido);
 

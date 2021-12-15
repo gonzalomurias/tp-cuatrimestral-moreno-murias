@@ -42,12 +42,19 @@ namespace Negocio
             try
             {
                 datos.setearConsulta("Select TOP 1 ID From Direcciones where Calle = '" + calle + "' and Numero = '" + numero + "' and CP = '" + cp + "' and Ciudad = '" + ciudad + "' and Provincia = '" + provincia + "' and Pais = '" + pais + "'");
-                datos.ejecutarAccion();
+                datos.ejecutarLectura();
 
 
                 while (datos.Lector.Read())
                 {
                     aux.ID = (int)datos.Lector["ID"];
+                    aux.Calle = calle;
+                    aux.Numero = numero;
+                    aux.Ciudad = ciudad;
+                    aux.CP = cp;
+                    aux.Provincia = provincia;
+                    aux.Pais = pais;
+
                 }
 
 

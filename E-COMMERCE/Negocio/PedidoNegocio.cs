@@ -15,7 +15,9 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into PEDIDOS (IDFormaPago, FechaPedido, Total) VALUES (@IDFP, GETDATE(), @Total)");
+                datos.setearConsulta("Insert into PEDIDOS (IDDireccion, IDUsuario, IDFormaPago, FechaPedido, Total) VALUES (@IDDIR, @IDUSER, @IDFP, GETDATE(), @Total)");
+                datos.setearParametro("@IDDIR", nuevo.Direccion.ID);
+                datos.setearParametro("@IDUSER", nuevo.User.ID);
                 datos.setearParametro("@IDFP", nuevo.FPago.ID);
                 datos.setearParametro("@Total", nuevo.Total);
 
