@@ -41,7 +41,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("Select TOP 1 ID From Direcciones where Calle = '" + calle + "' and Numero = '" + numero + "' and CP = '" + cp + "' and Ciudad = '" + ciudad + "' and Provincia = '" + provincia + "' and Pais = '" + pais + "'");
+                datos.setearConsulta("Select ID From Direcciones where Calle = '" + calle + "' and Numero = '" + numero + "' and CP = '" + cp + "' and Ciudad = '" + ciudad + "' and Provincia = '" + provincia + "' and Pais = '" + pais + "'");
                 datos.ejecutarLectura();
 
 

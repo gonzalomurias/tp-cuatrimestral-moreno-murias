@@ -145,6 +145,31 @@ UPDATE STOCK_X_TALLE SET IDProducto=@IDProducto, IDTalle=@IDTalle, Cantidad=@Can
 END
 END
 
+
+
+go
+CREATE TRIGGER TR_NUEVA_DIRECCION ON DIRECCIONES
+INSTEAD OF INSERT
+AS BEGIN	
+	declare @Calle varchar(200) 
+	declare @Numero varchar(10) 
+	declare @CP varchar(5) 
+	declare @Ciudad varchar(50) 
+	declare @Provincia varchar(50) 
+	declare @Pais varchar(50) 
+	Select  @Calle = Calle, @Numero = Numero, @CP = CP, @Ciudad = Ciudad, @Provincia = Provincia, @Pais = Pais from INSERTED
+
+	IF @Numero not in (Select Numero from DIRECCIONES WHERE Calle = @Calle AND CP = @CP AND Ciudad = @Ciudad AND Provincia = @Provincia AND Pais = @Pais)
+		BEGIN 
+			INSERT INTO DIRECCIONES(Calle, Numero, CP, Ciudad, Provincia, Pais) VALUES (@Calle, @Numero, @CP, @Ciudad, @Provincia, @Pais)
+		END
+	ELSE BEGIN
+			declare @ID int
+			SET @ID = (Select ID FROM DIRECCIONES WHERE Calle = @Calle AND @Numero = Numero AND CP = @CP AND Ciudad = @Ciudad AND Provincia = @Provincia AND Pais = @Pais)
+			UPDATE DIRECCIONES SET Calle = @Calle, Numero=@Numero, CP = @CP,Ciudad = @Ciudad, Provincia = @Provincia, Pais = @Pais WHERE ID=@ID
+		END
+END
+
 USE QuickStrike
 
 INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Gonzalo', 'Murias', '37786097', 'gonzalomurias@gmail.com', '1130918975', 'adminadmin', 2, 1)
@@ -157,8 +182,3 @@ INSERT INTO FORMASPAGO (Nombre) VALUES ('TRANSFERENCIA BANCARIA')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('MERCADO PAGO')
 
 
-select * from PEDIDOS
-
-select * from DIRECCIONES
-
-Select TOP 1 ID From Direcciones where Calle = 'Rosetti' and Numero = '2923' and CP = '1636' and Ciudad = 'Olivos' and Provincia = 'Buenos Aires' and Pais = 'Argentina'

@@ -14,6 +14,9 @@ namespace tp_cuatrimestral_moreno_murias
         Direccion direc = new Direccion();
         Pedido pedido = new Pedido();
         decimal total = 0;
+
+        List<ItemCarrito> listacarrito = new List<ItemCarrito>();
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             FormaPagoNegocio formaPagoNegocio = new FormaPagoNegocio();
@@ -144,9 +147,21 @@ namespace tp_cuatrimestral_moreno_murias
             pedido.User= ((Dominio.Usuario)Session["usuario"]);
             PedidoNegocio negocio = new PedidoNegocio();
             negocio.agregar(pedido);
+            listacarrito = (List<ItemCarrito>)Session["carrito"];
 
+            foreach(ItemCarrito item in listacarrito)
+            {
+                StockProductoNegocio stocknegocio = new StockProductoNegocio();
+                TalleNegocio tallenegocio = new TalleNegocio();
+                int id = tallenegocio.buscarID(item.Talle);
+                stocknegocio.descontarStock(item.ID, id, item.Cantidad);
+            }
+
+
+            Session.Remove("carrito");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalPedidoOk();", true);
 
+            
         }
 
         protected void CheckBox2_CheckedChanged(object sender, EventArgs e)

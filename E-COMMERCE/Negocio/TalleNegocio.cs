@@ -44,6 +44,37 @@ namespace Negocio
 
         }
 
+        public int buscarID(string talle)
+        {
+            int id=0;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Select ID From Talles where Numero = '" + talle + "'");
+                datos.ejecutarLectura();
+
+
+                while (datos.Lector.Read())
+                {
+                    id = (int)datos.Lector["ID"];
+                    
+
+                }
+
+
+                return id;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }

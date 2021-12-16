@@ -100,5 +100,28 @@ namespace Negocio
 
         }
 
+        public void descontarStock(int IDProducto, int IDTalle, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE STOCK_X_TALLE SET Cantidad = Cantidad - " + cantidad + "WHERE IDProducto = " + IDProducto + " AND IDTalle = '" + IDTalle + "'");
+                datos.setearParametro("@IDProducto", IDProducto);
+                datos.setearParametro("@IDTalle", IDTalle);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        
+
     }
 }

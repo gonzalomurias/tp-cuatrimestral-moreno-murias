@@ -77,14 +77,45 @@ namespace tp_cuatrimestral_moreno_murias
 
                 Producto prod = new Producto();
                 prod = listaProductos.Find(x => x.ID == int.Parse(id));
-
+                
                 ItemCarrito item = new ItemCarrito();
 
-                item.ID = carrito.Count() + 1;
-                item.Producto = prod;
-                item.Talle = ddlTalles.SelectedItem.Text;
-                item.Cantidad = int.Parse(txtCantidad.Text);
+                if (carrito.Count() == 0)
+                {
+                    item.ID = carrito.Count() + 1;
+                    item.Producto = prod;
+                    item.Talle = ddlTalles.SelectedItem.Text;
+                    item.Cantidad = int.Parse(txtCantidad.Text);
+                }
 
+                foreach (ItemCarrito aux in carrito)
+                {
+                    int i = 0;
+                    int index = 0;
+
+                    item.ID = carrito.Count() + 1;
+                    item.Producto = prod;
+                    item.Talle = ddlTalles.SelectedItem.Text;
+
+                    if (aux.Producto.ID == item.Producto.ID && aux.Talle == item.Talle)
+                    {
+                        
+                        item.Cantidad = int.Parse(txtCantidad.Text)+aux.Cantidad;
+
+                        index = i;
+
+                        i++;
+                        carrito.RemoveAt(index);
+                        break;
+                    }
+                    else
+                    {
+                        
+                        item.Cantidad = int.Parse(txtCantidad.Text);
+                    }
+                }
+
+                
                 carrito.Add(item);
                 Session.Add("carrito", carrito);
 

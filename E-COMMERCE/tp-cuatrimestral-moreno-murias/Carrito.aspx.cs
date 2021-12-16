@@ -98,7 +98,29 @@ namespace tp_cuatrimestral_moreno_murias
             }
             else
             {
-                Response.Redirect("CheckOut.aspx", false);
+                carrito = (List<ItemCarrito>)Session["carrito"];
+                foreach (ItemCarrito item in carrito)
+                {
+                    StockProductoNegocio stock = new StockProductoNegocio();
+                    TalleNegocio talle = new TalleNegocio();
+
+                    int idtalle = talle.buscarID(item.Talle);
+
+                    if (stock.validarStock(item.Producto.ID, idtalle, item.Cantidad)==false)
+                    {
+                        lblSinStock.Text = item.Producto.Nombre;
+                        lblSSTalle.Text = ": "+item.Talle;
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalSinStock();", true);
+                    }
+                    else
+                    {
+
+                        Response.Redirect("CheckOut.aspx", false);
+                    }
+
+                    
+                }
+                
             }
 
         }

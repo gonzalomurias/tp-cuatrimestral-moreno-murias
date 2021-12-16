@@ -47,11 +47,39 @@
     </div>
     <%} %>
 
-    
+    <div class="modal fade" id="SinStock" tabindex="-1" role="dialog" aria-labelledby="SinStock2" style="color: black;" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="SinStock2">NO HAY STOCK DISPONIBLE</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                     <div class="modal-body" style="font-weight:600; font-size:18px; ">
+                        
+                         <asp:Label Text="" ID="lblSinStock" runat="server"></asp:Label>
+                         <div style="display:flex; flex-direction:row; ">
+                             <p>Talle </p> 
+                         <asp:Label Text="" ID="lblSSTalle" runat="server"></asp:Label>
+                         </div>
+                     </div>
+                    </div>
+                </div>
+            </div>
 
     <div style="font-size: 24px;">
         <asp:Label runat="server" ID="lblCarritoVacio" Visible="false">CARRITO VACÍO</asp:Label>
     </div>
 
+    <script type="text/javascript">
+        function openModalSinStock() {
+            $('#SinStock').modal('show');
+            //$('#SinStock').on('hidden.bs.modal', function () {
+            //    window.location.href = "Carrito.aspx"
+            //})
+        }
+    </script>
 
 </asp:Content>
+
