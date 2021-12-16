@@ -80,13 +80,7 @@ CREATE TABLE ITEMCARRITO(
 )
 
 
-CREATE TABLE CARRITO(
-	 ID int not null identity(1,1),
-	 IDItemCarrito int not null foreign key references ITEMCARRITO(ID),
-	 IDPedido int not null foreign key references PEDIDOS(ID)
-)
 
-drop table pedidos
 
 CREATE TABLE PEDIDOS(
 	ID int not null primary key identity(1,1),
@@ -98,6 +92,15 @@ CREATE TABLE PEDIDOS(
 	Despachado bit not null default(0),
 	Estado bit not null default(1)
 	)
+
+
+CREATE TABLE CARRITO(
+	 ID int not null identity(1,1),
+	 IDItemCarrito int not null foreign key references ITEMCARRITO(ID),
+	 IDPedido int not null foreign key references PEDIDOS(ID)
+)
+
+
 
 USE QuickStrike
 INSERT INTO MARCAS (Nombre) VALUES ('NIKE')
@@ -188,12 +191,38 @@ USE QuickStrike
 INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Gonzalo', 'Murias', '37786097', 'gonzalomurias@gmail.com', '1130918975', 'adminadmin', 2, 1)
 
 INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Agustina Magali', 'Moreno', '40222046', 'agustinamagalimoreno@gmail.com', '3489680985', 'adminadmin', 2, 1)
-
+INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Test', 'Test', '1111111', 'test@gmail.com', '3489680985', 'test', 1, 1)
 
 INSERT INTO FORMASPAGO (Nombre) VALUES ('EFECTIVO')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('TRANSFERENCIA BANCARIA')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('MERCADO PAGO')
 
-select * from pedidos
+INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (1, 1, 20)
+INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (1, 2, 10)
+INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (2, 1, 20)
+INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (3, 1, 20)
+
+
+
+select * from CARRITO C INNER JOIN PEDIDOS P ON C.IDPedido = P.ID INNER JOIN PRODUCTOS PR O
 
 Select IC.ID, P.ID, IC.Cantidad, IC.Talle from ITEMCARRITO IC inner join PRODUCTOS P on  IC.ID=P.ID
+
+
+Select TOP 1 * from PEDIDOS ORDER BY FechaPedido DESC
+
+Select P.Nombre as Nombre, IC.Cantidad AS Cantidad, IC.Talle as Talle, PS.Despachado as Despachado from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 8
+
+Select * from ITEMCARRITO
+
+Select * from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 2
+
+delete from pedidos where id=8
+
+Select * from STOCK_X_TALLE
+
+select * from PEDIDOS P INNER JOIN CARRITO C ON C.IDPedido=P.ID
+
+Select P.Nombre as Nombre, IC.Cantidad AS Cantidad, IC.Talle as Talle, P.Precio as Precio from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 2
+
+Select P.Nombre as Nombre, IC.Cantidad AS Cantidad, IC.Talle as Talle, P.Precio as Precio from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 8

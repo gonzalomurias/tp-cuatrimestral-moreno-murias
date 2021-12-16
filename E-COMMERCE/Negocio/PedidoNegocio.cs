@@ -44,7 +44,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT ID FROM PEDIDOS WHERE IDUsuario = " + aux.User.ID + " AND FechaPedido = " + aux.FechaPedido + "");
+                datos.setearConsulta("Select TOP 1 ID from PEDIDOS WHERE IDUsuario = "+aux.User.ID+" ORDER BY FechaPedido DESC");
                 datos.ejecutarLectura();
 
 
@@ -66,6 +66,42 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public List<Pedido> listarPedidos(int IDUsuario)
+        {
+            List<Pedido> lista = new List<Pedido>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT ID, Total, FechaPedido, Despachado FROM PEDIDOS WHERE IDUsuario = " + IDUsuario + "");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Pedido aux = new Pedido();
+
+                    aux.ID = (int)datos.Lector["ID"];
+                    aux.Total = (decimal)datos.Lector["Total"];
+                    aux.FechaPedido = (DateTime)datos.Lector["FechaPedido"];
+                    aux.Despachado = (bool)datos.Lector["Despachado"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
         }
 
     }

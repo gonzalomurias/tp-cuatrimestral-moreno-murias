@@ -149,13 +149,29 @@ namespace tp_cuatrimestral_moreno_murias
             PedidoNegocio negocio = new PedidoNegocio();
             negocio.agregar(pedido);
             listacarrito = (List<ItemCarrito>)Session["carrito"];
+            
+            pedido = negocio.buscarID(pedido);
 
             foreach(ItemCarrito item in listacarrito)
             {
+                ItemCarritoNegocio itemCarritoNegocio = new ItemCarritoNegocio();
+                itemCarritoNegocio.guardar(item);
+
+                CarroNegocio carroNegocio = new CarroNegocio();
+                Carro carro = new Carro();
+
+                carro.pedido = pedido;
+                carro.producto = item;
+
+                carroNegocio.guardar(carro);
+                
+                  
+
+
                 StockProductoNegocio stocknegocio = new StockProductoNegocio();
                 TalleNegocio tallenegocio = new TalleNegocio();
                 int id = tallenegocio.buscarID(item.Talle);
-                stocknegocio.descontarStock(item.ID, id, item.Cantidad);
+                stocknegocio.descontarStock(item.Producto.ID, id, item.Cantidad);
             }
 
 

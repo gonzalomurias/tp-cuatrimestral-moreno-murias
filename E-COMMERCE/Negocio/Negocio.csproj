@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
-    <Compile Include="CarritoNegocio.cs" />
+    <Compile Include="CarroNegocio.cs" />
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="DireccionNegocio.cs" />
     <Compile Include="EmailService.cs" />

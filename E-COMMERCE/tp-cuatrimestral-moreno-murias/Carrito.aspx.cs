@@ -14,6 +14,8 @@ namespace tp_cuatrimestral_moreno_murias
 
         public List<ItemCarrito> carrito { get; set; }
         public List<ItemCarrito> Cart { get; internal set; }
+        public Pedido Pedido { get; internal set; }
+        public ItemCarrito ItemCarrito { get; internal set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {

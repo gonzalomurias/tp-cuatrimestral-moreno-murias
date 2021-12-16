@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Carrito.cs" />
+    <Compile Include="Carro.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="FormaPago.cs" />
     <Compile Include="Pedido.cs" />

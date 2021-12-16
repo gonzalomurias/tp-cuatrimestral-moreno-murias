@@ -41,10 +41,6 @@ namespace Negocio
                         aux.Marca.ID = (int)datos.Lector["IDMar"];
                         aux.Marca.Nombre = (string)datos.Lector["Marca"];
 
-                        //aux.Talle = new Talle();
-                        //aux.Talle.ID = (int)datos.Lector["IDTa"];
-                        //aux.Talle.Numero = (int)datos.Lector["Talle"];
-                        //aux.Talle.Stock = (int)datos.Lector["Stock"];
 
                         if (!(datos.Lector["Nombre"] is DBNull))
                             aux.Nombre = (string)datos.Lector["Nombre"];

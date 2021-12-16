@@ -52,7 +52,7 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT INTO ITEMCARRITO(IDProducto, Cantidad, Talle) VALUES (@IDProducto, @Cantidad, @Talle");
+                datos.setearConsulta("INSERT INTO ITEMCARRITO(IDProducto, Cantidad, Talle) VALUES (@IDProducto, @Cantidad, @Talle)");
                 datos.setearParametro("@IDProducto", item.Producto.ID);
                 datos.setearParametro("@Cantidad", item.Cantidad);
                 datos.setearParametro("Talle", item.Talle);

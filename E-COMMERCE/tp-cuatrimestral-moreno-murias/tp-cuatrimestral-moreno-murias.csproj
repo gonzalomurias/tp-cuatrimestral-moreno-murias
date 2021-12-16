@@ -299,6 +299,7 @@
     <Content Include="Carrito.aspx" />
     <Content Include="CheckOut.aspx" />
     <Content Include="Detalle.aspx" />
+    <Content Include="DetallePedido.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="GestionarStock.aspx" />
     <Content Include="GestionarUsuariosAdmin.aspx" />
@@ -311,6 +312,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="FAQ.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="MisCompras.aspx" />
     <Content Include="ModificarCategoria.aspx" />
     <Content Include="ModificarMarca.aspx" />
     <Content Include="ModificarProducto.aspx" />
@@ -499,6 +501,13 @@
     <Compile Include="Detalle.aspx.designer.cs">
       <DependentUpon>Detalle.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -541,6 +550,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisCompras.aspx.cs">
+      <DependentUpon>MisCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisCompras.aspx.designer.cs">
+      <DependentUpon>MisCompras.aspx</DependentUpon>
     </Compile>
     <Compile Include="ModificarCategoria.aspx.cs">
       <DependentUpon>ModificarCategoria.aspx</DependentUpon>

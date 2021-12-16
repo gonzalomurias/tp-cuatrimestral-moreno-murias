@@ -18,7 +18,6 @@ namespace Dominio
 
         public DateTime FechaPedido { get; set; }
 
-        public Carrito Carrito { get; set; }
         public decimal Total { get; set; }
 
         public bool Despachado { get; set; }
