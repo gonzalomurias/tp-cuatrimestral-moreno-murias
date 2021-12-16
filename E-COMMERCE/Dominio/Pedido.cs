@@ -17,6 +17,8 @@ namespace Dominio
         public FormaPago FPago { get; set; }
 
         public DateTime FechaPedido { get; set; }
+
+        public Carrito Carrito { get; set; }
         public decimal Total { get; set; }
 
         public bool Despachado { get; set; }

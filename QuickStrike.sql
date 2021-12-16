@@ -72,8 +72,21 @@ CREATE TABLE FORMASPAGO(
 	Estado bit not null default(1)
 )
 
+CREATE TABLE ITEMCARRITO(
+	ID int not null primary key identity(1,1),
+	IDProducto int not null foreign key references PRODUCTOS(ID),
+	Cantidad int not null check(Cantidad>0),
+	Talle varchar(2) not null
+)
 
 
+CREATE TABLE CARRITO(
+	 ID int not null identity(1,1),
+	 IDItemCarrito int not null foreign key references ITEMCARRITO(ID),
+	 IDPedido int not null foreign key references PEDIDOS(ID)
+)
+
+drop table pedidos
 
 CREATE TABLE PEDIDOS(
 	ID int not null primary key identity(1,1),
@@ -181,4 +194,6 @@ INSERT INTO FORMASPAGO (Nombre) VALUES ('EFECTIVO')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('TRANSFERENCIA BANCARIA')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('MERCADO PAGO')
 
+select * from pedidos
 
+Select IC.ID, P.ID, IC.Cantidad, IC.Talle from ITEMCARRITO IC inner join PRODUCTOS P on  IC.ID=P.ID

@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="CarritoNegocio.cs" />
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="DireccionNegocio.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="FormaPagoNegocio.cs" />
+    <Compile Include="ItemCarritoNegocio.cs" />
     <Compile Include="MarcaNegocio.cs" />
     <Compile Include="PedidoNegocio.cs" />
     <Compile Include="ProductoNegocio.cs" />

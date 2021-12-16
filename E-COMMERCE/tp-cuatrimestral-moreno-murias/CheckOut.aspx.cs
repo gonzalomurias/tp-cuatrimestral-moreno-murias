@@ -145,6 +145,7 @@ namespace tp_cuatrimestral_moreno_murias
             Usuario usuario = new Usuario();
 
             pedido.User= ((Dominio.Usuario)Session["usuario"]);
+            pedido.FechaPedido = DateTime.Now;
             PedidoNegocio negocio = new PedidoNegocio();
             negocio.agregar(pedido);
             listacarrito = (List<ItemCarrito>)Session["carrito"];
