@@ -137,14 +137,15 @@
                 || (charCode >= 35 && charCode <= 40)
                 || (charCode >= 48 && charCode <= 57)
                 || (charCode >= 96 && charCode <= 105))) {
-                $("#<% = txtTelefonoReg.ClientID %>").removeClass("is-invalid");
-                $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-valid");
+                $("#<% =  txtTelefonoReg.ClientID %>").removeClass("is-valid");
+                $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-invalid");
                 return true;
             }
             else {
-                $("#<% =  txtTelefonoReg.ClientID %>").removeClass("is-valid");
-                $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-invalid");
+                $("#<% = txtTelefonoReg.ClientID %>").removeClass("is-invalid");
+                $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-valid");
                 return false;
+                
             }
         }
     </script>

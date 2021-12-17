@@ -171,13 +171,14 @@
                      || (charCode >= 35 && charCode <= 40)
                      || (charCode >= 48 && charCode <= 57)
                      || (charCode >= 96 && charCode <= 105))) {
-                     $("#<% = txtDniReg.ClientID %>").removeClass("is-invalid");
-                     $("#<% = txtDniReg.ClientID %>").addClass("is-valid");
+                     $("#<% = txtDniReg.ClientID %>").removeClass("is-valid");
+                     $("#<% = txtDniReg.ClientID %>").addClass("is-invalid");
                      return true;
                  }
                  else {
-                     $("#<% = txtDniReg.ClientID %>").removeClass("is-valid");
-                     $("#<% = txtDniReg.ClientID %>").addClass("is-invalid");
+                     
+                     $("#<% = txtDniReg.ClientID %>").removeClass("is-invalid");
+                     $("#<% = txtDniReg.ClientID %>").addClass("is-valid");
                 return false;
             }
         }
@@ -190,13 +191,14 @@
                 || (charCode >= 35 && charCode <= 40)
                 || (charCode >= 48 && charCode <= 57)
                 || (charCode >= 96 && charCode <= 105))) {
-                $("#<% = txtTelefonoReg.ClientID %>").removeClass("is-invalid");
-                     $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-valid");
+                $("#<% =  txtTelefonoReg.ClientID %>").removeClass("is-valid");
+                $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-invalid");
                      return true;
                  }
-                 else {
-                     $("#<% =  txtTelefonoReg.ClientID %>").removeClass("is-valid");
-                     $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-invalid");
+            else {
+                $("#<% = txtTelefonoReg.ClientID %>").removeClass("is-invalid");
+                $("#<% =  txtTelefonoReg.ClientID %>").addClass("is-valid");
+                     
                 return false;
             }
         }
