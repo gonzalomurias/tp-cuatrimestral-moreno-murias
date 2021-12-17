@@ -177,7 +177,12 @@ namespace tp_cuatrimestral_moreno_murias
                 stocknegocio.descontarStock(item.Producto.ID, id, item.Cantidad);
             }
 
-            
+            EmailService emailService = new EmailService();
+            emailService.armarCorreoUsuario((((Dominio.Usuario)Session["usuario"]).Email), pedido);
+            emailService.enviarEmail();
+            emailService.armarCorreoEmpresa(pedido);
+            emailService.enviarEmail();
+        
             Session.Remove("carrito");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalPedidoOk();", true);
             
