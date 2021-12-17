@@ -292,6 +292,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdministrarPedidos.aspx" />
     <Content Include="AgregarAdmin.aspx" />
     <Content Include="AgregarCategoria.aspx" />
     <Content Include="AgregarMarca.aspx" />
@@ -300,6 +301,7 @@
     <Content Include="CheckOut.aspx" />
     <Content Include="Detalle.aspx" />
     <Content Include="DetallePedido.aspx" />
+    <Content Include="DetallePedido2.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="GestionarStock.aspx" />
     <Content Include="GestionarUsuariosAdmin.aspx" />
@@ -452,6 +454,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministrarPedidos.aspx.cs">
+      <DependentUpon>AdministrarPedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdministrarPedidos.aspx.designer.cs">
+      <DependentUpon>AdministrarPedidos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgregarAdmin.aspx.cs">
       <DependentUpon>AgregarAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -507,6 +516,13 @@
     </Compile>
     <Compile Include="DetallePedido.aspx.designer.cs">
       <DependentUpon>DetallePedido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedido2.aspx.cs">
+      <DependentUpon>DetallePedido2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedido2.aspx.designer.cs">
+      <DependentUpon>DetallePedido2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
