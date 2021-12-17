@@ -1,6 +1,7 @@
 DROP DATABASE QuickStrike
 
 CREATE DATABASE QuickStrike
+
 go
 Use QuickStrike
 CREATE TABLE CATEGORIAS(
@@ -71,7 +72,7 @@ CREATE TABLE FORMASPAGO(
 	Nombre varchar(30) not null,
 	Estado bit not null default(1)
 )
-
+go
 CREATE TABLE ITEMCARRITO(
 	ID int not null primary key identity(1,1),
 	IDProducto int not null foreign key references PRODUCTOS(ID),
@@ -79,9 +80,7 @@ CREATE TABLE ITEMCARRITO(
 	Talle varchar(2) not null
 )
 
-
-
-
+go
 CREATE TABLE PEDIDOS(
 	ID int not null primary key identity(1,1),
 	IDDireccion int not null foreign key references DIRECCIONES(ID), 
@@ -93,55 +92,14 @@ CREATE TABLE PEDIDOS(
 	Estado bit not null default(1)
 	)
 
-
+go
 CREATE TABLE CARRITO(
 	 ID int not null identity(1,1),
 	 IDItemCarrito int not null foreign key references ITEMCARRITO(ID),
 	 IDPedido int not null foreign key references PEDIDOS(ID)
 )
 
-
-
-USE QuickStrike
-INSERT INTO MARCAS (Nombre) VALUES ('NIKE')
-INSERT INTO MARCAS (Nombre) VALUES ('ADIDAS')
-INSERT INTO MARCAS (Nombre) VALUES ('PUMA')
-INSERT INTO MARCAS (Nombre) VALUES ('CONVERSE')
-INSERT INTO MARCAS (Nombre) VALUES ('VANS')
-INSERT INTO MARCAS (Nombre) VALUES ('REEBOK')
-INSERT INTO MARCAS (Nombre) VALUES ('FILA')
-INSERT INTO MARCAS (Nombre) VALUES ('NEW BALANCE')
-
-
-INSERT INTO TALLES (Numero) VALUES (34)
-INSERT INTO TALLES (Numero) VALUES (35)
-INSERT INTO TALLES (Numero) VALUES (36)
-INSERT INTO TALLES (Numero) VALUES (37)
-INSERT INTO TALLES (Numero) VALUES (38)
-INSERT INTO TALLES (Numero) VALUES (39)
-INSERT INTO TALLES (Numero) VALUES (40)
-INSERT INTO TALLES (Numero) VALUES (41)
-INSERT INTO TALLES (Numero) VALUES (42)
-INSERT INTO TALLES (Numero) VALUES (43)
-INSERT INTO TALLES (Numero) VALUES (44)
-INSERT INTO TALLES (Numero) VALUES (45)
-INSERT INTO TALLES (Numero) VALUES (46)
-INSERT INTO TALLES (Numero) VALUES (47)
-
-INSERT INTO CATEGORIAS (Nombre) VALUES ('ZAPATILLAS')
-INSERT INTO CATEGORIAS (Nombre) VALUES ('OJOTAS')
-
-INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
-VALUES (1, 1, 'NIKE AIR FORCE 1 07', 'Zapatillas Nike Air Force 1 07 Low White', 17499.00,
-'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw9ee36128/products/NI_315115-112/NI_315115-112-6.JPG')
-INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
-VALUES (1, 1, 'NIKE AIR MAX 270 REACT', 'Zapatillas Nike Air Max 270 React', 25199.00,
-'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwac06058d/products/NI_CT1264-101/NI_CT1264-101-6.JPG')
-INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
-VALUES (1, 2, 'ADIDAS FORUM EXHIBIT LOW', 'Zapatillas Adidas Forum Exhibit Low', 12999.00,
-'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw2629f743/products/AD_GZ5391/AD_GZ5391-6.JPG')
-
-
+---------------------------------------------------------------------------- triggers
 
 go
 CREATE TRIGGER TR_CARGAR_STOCK ON STOCK_x_TALLE
@@ -186,16 +144,96 @@ AS BEGIN
 		END
 END
 
-USE QuickStrike
+---------------------------------------------------------------------------- inserts
+
+--MARCAS--
+
+INSERT INTO MARCAS (Nombre) VALUES ('NIKE')
+INSERT INTO MARCAS (Nombre) VALUES ('ADIDAS')
+INSERT INTO MARCAS (Nombre) VALUES ('PUMA')
+INSERT INTO MARCAS (Nombre) VALUES ('CONVERSE')
+INSERT INTO MARCAS (Nombre) VALUES ('VANS')
+INSERT INTO MARCAS (Nombre) VALUES ('REEBOK')
+INSERT INTO MARCAS (Nombre) VALUES ('FILA')
+INSERT INTO MARCAS (Nombre) VALUES ('NEW BALANCE')
+
+--TALLES--
+
+INSERT INTO TALLES (Numero) VALUES (34)
+INSERT INTO TALLES (Numero) VALUES (35)
+INSERT INTO TALLES (Numero) VALUES (36)
+INSERT INTO TALLES (Numero) VALUES (37)
+INSERT INTO TALLES (Numero) VALUES (38)
+INSERT INTO TALLES (Numero) VALUES (39)
+INSERT INTO TALLES (Numero) VALUES (40)
+INSERT INTO TALLES (Numero) VALUES (41)
+INSERT INTO TALLES (Numero) VALUES (42)
+INSERT INTO TALLES (Numero) VALUES (43)
+INSERT INTO TALLES (Numero) VALUES (44)
+INSERT INTO TALLES (Numero) VALUES (45)
+INSERT INTO TALLES (Numero) VALUES (46)
+INSERT INTO TALLES (Numero) VALUES (47)
+
+--CATEGORIAS--
+
+INSERT INTO CATEGORIAS (Nombre) VALUES ('ZAPATILLAS')
+INSERT INTO CATEGORIAS (Nombre) VALUES ('OJOTAS')
+
+--PRODUCTOS--
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 1, 'NIKE AIR FORCE 1 07', 'Zapatillas Nike Air Force 1 07 Low White', 17499.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw90e5bb38/products/NI_DD8959-100/NI_DD8959-100-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 1, 'NIKE AIR MAX 270 REACT', 'Zapatillas Nike Air Max 270 React', 25199.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw721f9e89/products/NI_CT1264-101/NI_CT1264-101-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 2, 'ADIDAS FORUM MID', 'Zapatillas Adidas Forum Mid', 22399.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwe35f28c2/products/AD_FY4976/AD_FY4976-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 1, 'NIKE WAFFLE ONE', 'Zapatillas Nike Waffle One', 20999.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw6ea3a724/products/NI_DA7995-001/NI_DA7995-001-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 3, 'PUMA RS-X3 SUPER', 'Zapatillas Puma RS-X3 Super', 13399.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw2975ce9a/products/PU_372884-08/PU_372884-08-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 3, 'PUMA RS-X MIX', 'Zapatillas Puma Rs-X Mix', 16399.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw03c0538c/products/PU_380462-01/PU_380462-01-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 5, 'VANS SK8-HI', 'Zapatillas Vans Sk8-Hi', 13900.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwb33c8991/products/VA_VN000D5IB8C/VA_VN000D5IB8C-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 5, 'VANS U SK8-HI', 'Zapatillas Vans U SK8-Hi', 13900.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwfc11df5a/products/VA_VN0A32QG4G5/VA_VN0A32QG4G5-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 4, 'CONVERSE CHUCK TAYLOR CORE HI', 'Zapatillas Converse Chuck Taylor Core Hi', 7599.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwe8985c5d/products/CO_156999C/CO_156999C-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (2, 1, 'NIKE OFFCOURT SLIDE', 'Ojotas Nike Offcourt Slide', 6499.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwcf30d2d0/products/NI_BQ4632-010/NI_BQ4632-010-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 7, 'FILA ARCHIVE RJV', 'Zapatillas Fila Archive RJV', 17699.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw5a2d1a13/products/FI_1RM01543-014/FI_1RM01543-014-1.JPG')
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (2, 3, 'NIKE OFFCOURT SLIDE', 'Ojotas Puma Popcat 20 Adiprene', 6499.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwb83236dc/products/PU_385033-02/PU_385033-02-1.JPG')
+
+
+
+
+--USUARIOS--
 
 INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Gonzalo', 'Murias', '37786097', 'gonzalomurias@gmail.com', '1130918975', 'adminadmin', 2, 1)
-
 INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Agustina Magali', 'Moreno', '40222046', 'agustinamagalimoreno@gmail.com', '3489680985', 'adminadmin', 2, 1)
 INSERT INTO USUARIOS (NOMBRE, Apellido, DNI, Email, Telefono, Pass, Perfil, Estado)values('Test', 'Test', '1111111', 'test@gmail.com', '3489680985', 'test', 1, 1)
+
+--FORMAS DE PAGO--
 
 INSERT INTO FORMASPAGO (Nombre) VALUES ('EFECTIVO')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('TRANSFERENCIA BANCARIA')
 INSERT INTO FORMASPAGO (Nombre) VALUES ('MERCADO PAGO')
+
+--STOCK--
 
 INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (1, 1, 20)
 INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (1, 2, 10)
@@ -204,25 +242,3 @@ INSERT INTO STOCK_X_TALLE(IDProducto, IDTalle, Cantidad) VALUES (3, 1, 20)
 
 
 
-select * from CARRITO C INNER JOIN PEDIDOS P ON C.IDPedido = P.ID INNER JOIN PRODUCTOS PR O
-
-Select IC.ID, P.ID, IC.Cantidad, IC.Talle from ITEMCARRITO IC inner join PRODUCTOS P on  IC.ID=P.ID
-
-
-Select TOP 1 * from PEDIDOS ORDER BY FechaPedido DESC
-
-Select P.Nombre as Nombre, IC.Cantidad AS Cantidad, IC.Talle as Talle, PS.Despachado as Despachado from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 8
-
-Select * from ITEMCARRITO
-
-Select * from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 2
-
-delete from pedidos where id=8
-
-Select * from STOCK_X_TALLE
-
-select * from PEDIDOS P INNER JOIN CARRITO C ON C.IDPedido=P.ID
-
-Select P.Nombre as Nombre, IC.Cantidad AS Cantidad, IC.Talle as Talle, P.Precio as Precio from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 2
-
-Select P.Nombre as Nombre, IC.Cantidad AS Cantidad, IC.Talle as Talle, P.Precio as Precio from CARRITO C INNER JOIN ITEMCARRITO IC ON C.IDItemCarrito = IC.ID INNER JOIN PRODUCTOS P ON IC.IDProducto = P.ID INNER JOIN PEDIDOS PS ON PS.ID = C.IDPedido WHERE  C.IDPedido = 8
