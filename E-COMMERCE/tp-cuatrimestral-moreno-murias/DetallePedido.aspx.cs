@@ -14,13 +14,23 @@ namespace tp_cuatrimestral_moreno_murias
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            int IDPedido = int.Parse(Request.QueryString["ID"]);
-            CarroNegocio negocio = new CarroNegocio();
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Acceso denegado, perfil no autorizado");
+                Response.Redirect("Error.aspx", false);
+            }
+            else
+            {
+                int IDPedido = int.Parse(Request.QueryString["ID"]);
+                CarroNegocio negocio = new CarroNegocio();
 
-            List<Carro> lista = new List<Carro>();
-            lista = negocio.listar(IDPedido);
-            gvDetallePedido.DataSource = lista;
-            gvDetallePedido.DataBind();
+                List<Carro> lista = new List<Carro>();
+                lista = negocio.listar(IDPedido);
+                gvDetallePedido.DataSource = lista;
+                gvDetallePedido.DataBind();
+            }
+
+           
 
         }
     }

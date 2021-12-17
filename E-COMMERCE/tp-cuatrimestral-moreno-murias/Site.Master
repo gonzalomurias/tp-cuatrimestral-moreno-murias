@@ -65,6 +65,15 @@
     <%}
         else
         { %>
+              <%  if (((Dominio.Usuario)Session["usuario"]).Perfil == Dominio.Perfil.CLIENTE){%>
+              <div class="dropdown" style=" margin-left:10px;">
+                   <asp:ImageButton ID="dropdownMenuButton" runat="server" CssClass="btn btn-dark dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" ImageUrl="https://img.icons8.com/ios-glyphs/30/ffffff/user--v1.png" OnClick="ibtnCarrito_Click" Width="50px"/>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/MisCompras.aspx">MIS PEDIDOS</a>
+
+              </div>
+            </div>
+              <%}%>
     <asp:Button ID="btnLogout" text="Cerrar Sesión" runat="server" type="button" class="btn btn-secondary" style="margin-left: 10px" OnClick="btnLogout_Click"/>
     <%  if (((Dominio.Usuario)Session["usuario"]).Perfil == Dominio.Perfil.ADMIN)
                 {%>
