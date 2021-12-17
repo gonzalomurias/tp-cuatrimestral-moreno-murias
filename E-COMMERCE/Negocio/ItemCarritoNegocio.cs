@@ -70,7 +70,33 @@ namespace Negocio
             }
         }
 
+        public ItemCarrito buscarID(ItemCarrito aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT ID FROM ITEMCARRITO WHERE IDProducto = " + aux.Producto.ID + " AND Cantidad = " + aux.Cantidad + " AND Talle = '" + aux.Talle + "'");
+                datos.ejecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    aux.ID = (int)datos.Lector["ID"];
+
+                }
+
+
+                return aux;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 
     

@@ -15,7 +15,7 @@ namespace tp_cuatrimestral_moreno_murias
         Pedido pedido = new Pedido();
         decimal total = 0;
 
-        List<ItemCarrito> listacarrito = new List<ItemCarrito>();
+        
        
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -148,6 +148,7 @@ namespace tp_cuatrimestral_moreno_murias
             pedido.FechaPedido = DateTime.Now;
             PedidoNegocio negocio = new PedidoNegocio();
             negocio.agregar(pedido);
+            List<ItemCarrito> listacarrito = new List<ItemCarrito>();
             listacarrito = (List<ItemCarrito>)Session["carrito"];
             
             pedido = negocio.buscarID(pedido);
@@ -155,13 +156,15 @@ namespace tp_cuatrimestral_moreno_murias
             foreach(ItemCarrito item in listacarrito)
             {
                 ItemCarritoNegocio itemCarritoNegocio = new ItemCarritoNegocio();
+                ItemCarrito itemaux = new ItemCarrito();           
                 itemCarritoNegocio.guardar(item);
 
+                itemaux = itemCarritoNegocio.buscarID(item);
                 CarroNegocio carroNegocio = new CarroNegocio();
                 Carro carro = new Carro();
 
                 carro.pedido = pedido;
-                carro.producto = item;
+                carro.producto = itemaux;
 
                 carroNegocio.guardar(carro);
                 
@@ -174,10 +177,10 @@ namespace tp_cuatrimestral_moreno_murias
                 stocknegocio.descontarStock(item.Producto.ID, id, item.Cantidad);
             }
 
-
+            
             Session.Remove("carrito");
             ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModalPedidoOk();", true);
-
+            
             
         }
 

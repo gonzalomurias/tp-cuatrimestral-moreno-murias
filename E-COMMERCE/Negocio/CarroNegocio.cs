@@ -26,7 +26,7 @@ namespace Negocio
 
                     carro.producto = new ItemCarrito();
                     carro.producto.Producto = new Producto();
-                    carro.pedido = new Pedido();
+                    
                     
                     carro.producto.Producto.Nombre = (string)datos.Lector["Nombre"];
                     carro.producto.Cantidad = (int)datos.Lector["Cantidad"];
