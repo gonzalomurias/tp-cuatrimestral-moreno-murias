@@ -215,11 +215,59 @@ INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Im
 VALUES (1, 7, 'FILA ARCHIVE RJV', 'Zapatillas Fila Archive RJV', 17699.00,
 'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw5a2d1a13/products/FI_1RM01543-014/FI_1RM01543-014-1.JPG')
 INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
-VALUES (2, 3, 'NIKE OFFCOURT SLIDE', 'Ojotas Puma Popcat 20 Adiprene', 6499.00,
+VALUES (2, 3, 'PUMA POPCAT 20 ADIPRENE', 'Ojotas Puma Popcat 20 Adiprene', 6499.00,
 'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwb83236dc/products/PU_385033-02/PU_385033-02-1.JPG')
 
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 1, 'NIKE AIR HUARACHE', 'Zapatillas Nike Air Huarache', 23999.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw628b52cc/products/NI_DH4439-001/NI_DH4439-001-1.JPG')
 
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 7, 'FILA UPROOT', 'Zapatillas Fila Uproot', 12999.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw3ef97f1f/products/FI_1BM00642-014/FI_1BM00642-014-1.JPG')
 
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 5, 'VANS ULTRA RANGE RAPIDWELD ', 'Zapatillas Vans Ultra Range Rapidweld', 17200.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw04a52bdc/products/VA_VN0A3MVUY28/VA_VN0A3MVUY28-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 4, 'CONVERSE NET STAR OK ', 'Zapatillas Converse Net Star Ox', 9999.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw5b626950/products/CO_169993C/CO_169993C-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 4, 'CONVERSE CHUCK TAYLOR CORE HI ', 'Zapatillas Converse Chuck Taylor Core Hi', 7799.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw677c0c25/products/CO_157005C/CO_157005C-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 2, 'ADIDAS SUPERSTAR ', 'Zapatillas adidas Superstar', 23499.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw1e1cd6b9/products/AD_EG4958/AD_EG4958-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 2, 'ADIDAS STAN SMITH ', 'Zapatillas adidas Stan Smith', 17999.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwbd757438/products/AD_FZ2707/AD_FZ2707-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 4, 'CONVERSE STOKE ', 'Zapatillas Converse Stoke', 9499.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwaad42f4d/products/CO_166610C/CO_166610C-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 3, 'PUMA MIRAGE SPORT REMIX', 'Zapatillas Puma Mirage Sport Remix', 17299.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw230a4cff/products/PU_381051-02/PU_381051-02-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 1, 'NIKE SB AIR MAX JANOSKI 2', 'Zapatillas Nike SB Air Max Janoski 2', 10399.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw3e929987/products/NI_631303-200/NI_631303-200-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 6, 'REEBOK CLASSIC LEGACY', 'Zapatillas Reebok Classic Legacy', 14499.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw4cdfd7c3/products/RE_FZ2924/RE_FZ2924-1.JPG')
+
+INSERT INTO PRODUCTOS (IDCategoria, IDMarca, Nombre, Descripcion, Precio, URL_Imagen) 
+VALUES (1, 6, 'REEBOK CLUB C REVENGE', 'Zapatillas Reebok Club C Revenge', 12999.00,
+'https://www.moovbydexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw0e05f68b/products/RE_FY7514/RE_FY7514-1.JPG')
+
+SELECT * FROM MARCAS
+SELECT * FROM CATEGORIAS
 
 --USUARIOS--
 
